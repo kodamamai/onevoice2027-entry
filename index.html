@@ -299,19 +299,24 @@ function init() {
   try {
     if (typeof liff === 'undefined') { showError('LIFFの読み込みに失敗しました'); return; }
     setStatus('読み込み中です...');
+    var step = 'init';
     liff.init({ liffId: LIFF_ID }).then(function () {
-      if (!liff.isLoggedIn()) { liff.login(); return; }
+      step = 'login';
+      if (!liff.isLoggedIn()) { liff.login({ redirectUri: location.href }); return; }
+      step = 'profile';
       return liff.getProfile();
     }).then(function (p) {
       if (!p) return;
       profile = p;
       var uid = encodeURIComponent(profile.userId);
+      step = 'check';
       return Promise.all([checkFriend(uid), fetch(API_URL + '?action=checkApplied&userId=' + uid).then(function (res) { return res.json(); })]);
     }).then(function (r) {
       if (!r) return;
       onStatus({ isFriend: r[0], addFriendUrl: ADD_FRIEND_URL, alreadyApplied: r[1] && r[1].alreadyApplied });
     }).catch(function (err) {
-      showError(err && err.message ? err.message : JSON.stringify(err));
+      // どの段階で止まったかを画面に出す（問い合わせ時の手がかり）
+      showError('[' + step + '] ' + (err && err.message ? err.message : JSON.stringify(err)));
     });
   } catch (e) {
     showError(e && e.message ? e.message : String(e));
