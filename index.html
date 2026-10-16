@@ -16,6 +16,8 @@ textarea{min-height:80px;}
 .radios label{display:inline-block;margin:4px 16px 0 0;font-weight:normal;}
 .radios input{width:auto;margin-right:4px;}
 .zip{display:flex;gap:8px;}
+.nameRow{display:flex;gap:8px;}
+.nameRow label{flex:1;min-width:0;}
 .zip input{flex:1;}
 .zip button{width:auto;margin-top:4px;padding:8px 12px;font-size:14px;background:#888;}
 .policy{font-weight:normal;font-size:12px;color:#333;background:#f7f7f7;border:1px solid #ddd;padding:8px;margin-top:4px;max-height:200px;overflow-y:auto;line-height:1.6;}
@@ -43,7 +45,10 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <div id="formArea" class="hidden">
 <form id="appForm">
-<label>お名前<span class="req">必須</span><input type="text" id="name" required></label>
+<div class="nameRow">
+<label>姓<span class="req">必須</span><input type="text" id="lastName" placeholder="例：滋賀" required></label>
+<label>名<span class="req">必須</span><input type="text" id="firstName" placeholder="例：花子" required></label>
+</div>
 <label>フリガナ<span class="req">必須</span><input type="text" id="furigana" required></label>
 <label>性別<span class="req">必須</span>
 <select id="gender" required>
@@ -90,12 +95,13 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <option value="3rd Chorus">3rd Chorus</option>
 </select>
 </label>
-<label>第二希望パート
-<select id="part2">
-<option value="">なし</option>
+<label>第二希望パート<span class="req">必須</span>
+<select id="part2" required>
+<option value="">選択してください</option>
 <option value="1st Chorus">1st Chorus</option>
 <option value="2nd Chorus">2nd Chorus</option>
 <option value="3rd Chorus">3rd Chorus</option>
+<option value="なし">なし</option>
 </select>
 </label>
 <label>立ち位置の希望<span class="req">必須</span>
@@ -192,7 +198,10 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <template id="childTpl">
 <div class="child">
 <h4>お子様<span class="childNo"></span></h4>
-<label>お名前<span class="req">必須</span><input type="text" class="cName" required></label>
+<div class="nameRow">
+<label>姓<span class="req">必須</span><input type="text" class="cLastName" required></label>
+<label>名<span class="req">必須</span><input type="text" class="cFirstName" required></label>
+</div>
 <label>フリガナ<span class="req">必須</span><input type="text" class="cFurigana" required></label>
 <label>性別<span class="req">必須</span>
 <select class="cGender" required><option value="">選択してください</option><option value="男性">男性</option><option value="女性">女性</option><option value="回答しない">回答しない</option></select>
@@ -203,8 +212,8 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label>第一希望パート<span class="req">必須</span>
 <select class="cPart1" required><option value="">選択してください</option><option value="1st Chorus">1st Chorus</option><option value="2nd Chorus">2nd Chorus</option><option value="3rd Chorus">3rd Chorus</option></select>
 </label>
-<label>第二希望パート
-<select class="cPart2"><option value="">なし</option><option value="1st Chorus">1st Chorus</option><option value="2nd Chorus">2nd Chorus</option><option value="3rd Chorus">3rd Chorus</option></select>
+<label>第二希望パート<span class="req">必須</span>
+<select class="cPart2" required><option value="">選択してください</option><option value="1st Chorus">1st Chorus</option><option value="2nd Chorus">2nd Chorus</option><option value="3rd Chorus">3rd Chorus</option><option value="なし">なし</option></select>
 </label>
 <label>立ち位置の希望<span class="req">必須</span>
 <select class="cPosition" required><option value="">選択してください</option><option value="花火をバックに歌う">花火をバックに歌う</option><option value="花火を見ながら歌う">花火を見ながら歌う</option></select>
@@ -402,7 +411,9 @@ function childVals() {
   for (var i = 0; i < cards.length; i++) {
     var c = cards[i];
     list.push({
-      name: c.querySelector('.cName').value,
+      lastName: c.querySelector('.cLastName').value,
+      firstName: c.querySelector('.cFirstName').value,
+      name: c.querySelector('.cLastName').value + ' ' + c.querySelector('.cFirstName').value,
       furigana: c.querySelector('.cFurigana').value,
       gender: c.querySelector('.cGender').value,
       birthday: c.querySelector('.cBirthday').value,
@@ -446,7 +457,9 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
   var data = {
     lineUserId: profile.userId,
     displayName: profile.displayName,
-    name: val('name'),
+    lastName: val('lastName'),
+    firstName: val('firstName'),
+    name: val('lastName') + ' ' + val('firstName'),
     furigana: val('furigana'),
     gender: val('gender'),
     birthday: val('birthday'),
