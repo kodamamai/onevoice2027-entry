@@ -26,6 +26,8 @@ textarea{min-height:80px;}
 .agree input{width:auto;margin-right:6px;}
 .checks label{display:block;margin:6px 0 0;font-weight:normal;}
 .checks input{width:auto;margin-right:6px;}
+fieldset{border:0;padding:0;margin:0;min-width:0;}
+.sec{margin:28px 0 0;padding:6px 10px;font-size:15px;background:#eef3f8;border-left:4px solid #06c755;}
 .child{border:1px solid #ddd;border-radius:6px;padding:4px 10px 10px;margin-top:10px;background:#fff;}
 .child h4{margin:8px 0 0;font-size:14px;}
 .subBtn{width:auto;margin-top:10px;padding:8px 12px;font-size:14px;background:#888;}
@@ -45,27 +47,20 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <div id="formArea" class="hidden">
 <form id="appForm">
+<div class="q">どなたの分を申し込みますか<span class="req">必須</span>
+<div class="radios">
+<label><input type="radio" name="applyType" value="自分だけ" required>自分だけ</label>
+<label><input type="radio" name="applyType" value="自分と小中学生の子ども">自分と、小中学生の子ども</label>
+<label><input type="radio" name="applyType" value="小中学生の子どもだけ">小中学生の子どもだけ（自分は参加しない）</label>
+</div>
+<p class="note">まとめてお申し込みいただけるのは、ご自身と小中学生のお子様だけです（お子様は5名まで）。高校生以上の方（ご家族・ご友人を含む）は、それぞれご本人のLINEアカウントからお申し込みください。</p>
+</div>
+<h3 class="sec">申込者（このLINEアカウントの方）の情報</h3>
 <div class="nameRow">
 <label>姓<span class="req">必須</span><input type="text" id="lastName" placeholder="例：滋賀" required></label>
 <label>名<span class="req">必須</span><input type="text" id="firstName" placeholder="例：花子" required></label>
 </div>
 <label>フリガナ<span class="req">必須</span><input type="text" id="furigana" required></label>
-<label>性別<span class="req">必須</span>
-<select id="gender" required>
-<option value="">選択してください</option>
-<option value="男性">男性</option>
-<option value="女性">女性</option>
-<option value="回答しない">回答しない</option>
-</select>
-</label>
-<label>生年月日<span class="req">必須</span><input type="date" id="birthday" max="2021-04-01" required>
-<p class="note">小学生以上の方が対象です（2021年4月1日以前に生まれた方）。小学生未満の方はご参加いただけません。</p></label>
-<label>年齢<span class="req">必須</span><input type="number" id="age" min="0" max="120" required>
-<p class="note">生年月日を入力すると自動で入ります。</p>
-</label>
-<label>保護者の氏名<span class="req">未成年の方は必須</span><input type="text" id="guardianName">
-<p class="note">未成年の方は保護者の同意が必要です。保護者の方の氏名をご記入ください。ご記入をもって、保護者の方が本プロジェクトへの応募・参加に同意したものとみなします。</p>
-</label>
 <label>郵便番号<span class="req">必須</span>
 <div class="zip"><input type="text" id="zipcode" inputmode="numeric" placeholder="例：5200001" required><button type="button" id="zipBtn">住所を検索</button></div>
 </label>
@@ -84,9 +79,27 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label>市区町村<span class="req">必須</span><input type="text" id="city" placeholder="例：大津市" required></label>
 <label>町名・番地・建物名<span class="req">必須</span><input type="text" id="address" placeholder="例：〇〇町1-2-3 〇〇マンション101" required></label>
 <label>携帯電話番号<span class="req">必須</span><input type="tel" id="phone" required>
-<p class="note">ご本人が携帯電話をお持ちでない場合は、保護者の携帯電話番号をご記入ください。</p>
+<p class="note">当選・落選のご連絡や参加費のお支払い案内に使います。ご本人が携帯電話をお持ちでない場合は、保護者の方の携帯電話番号をご記入ください。</p>
 </label>
 <label>連絡が取れるメールアドレス<span class="req">必須</span><input type="email" id="email" required></label>
+<fieldset id="selfArea" class="hidden" disabled>
+<h3 class="sec">ご自身の参加情報</h3>
+<label>性別<span class="req">必須</span>
+<select id="gender" required>
+<option value="">選択してください</option>
+<option value="男性">男性</option>
+<option value="女性">女性</option>
+<option value="回答しない">回答しない</option>
+</select>
+</label>
+<label>生年月日<span class="req">必須</span><input type="date" id="birthday" max="2021-04-01" required>
+<p class="note">小学生以上の方が対象です（2021年4月1日以前に生まれた方）。小学生未満の方はご参加いただけません。</p></label>
+<label>年齢<span class="req">必須</span><input type="number" id="age" min="0" max="120" required>
+<p class="note">生年月日を入力すると自動で入ります。</p>
+</label>
+<label id="guardianArea" class="hidden">保護者の氏名<span class="req">18歳未満の方は必須</span><input type="text" id="guardianName">
+<p class="note">18歳未満の方は、保護者の方の同意が必要です。保護者の方の同意を得たうえでお申し込みいただき、保護者の方の氏名をご記入ください。ご記入をもって、保護者の方が本プロジェクトへの応募・参加に同意したものとみなします。</p>
+</label>
 <label>第一希望パート<span class="req">必須</span>
 <select id="part1" required>
 <option value="">選択してください</option>
@@ -145,59 +158,23 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <option value="L">L</option>
 <option value="XL">XL</option>
 </select>
-<img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
-<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。</p>
+
 </label>
-<div class="q">合同練習の参加予定日<span class="req">必須</span>
-<div class="radios">
-<label><input type="radio" name="rehearsal" value="4/10（土）のみ" required>4/10（土）のみ</label>
-<label><input type="radio" name="rehearsal" value="4/24（土）のみ">4/24（土）のみ</label>
-<label><input type="radio" name="rehearsal" value="両日とも">両日とも</label>
-<label><input type="radio" name="rehearsal" value="未定">未定</label>
-</div>
-<p class="note">合同練習（大津市民会館・13:00〜17:00（仮））は、全2回中、最低1回の参加が必須です。現時点の予定でかまいません。</p>
-</div>
-<div class="q">DAY1（5/7）の参加<span class="req">必須</span>
-<div class="radios">
-<label><input type="radio" name="day1" value="参加する" required>参加する</label>
-<label><input type="radio" name="day1" value="参加しない">参加しない</label>
-</div>
-<p class="note">DAY1（公開リハーサル出演・ナイトバブル観覧）は自由参加です。合唱参加費に含まれるため、追加の参加費はかかりません（交通・駐車場・駐輪場等の利用料金は別途必要です）。</p>
-</div>
-<div class="q">このプロジェクトを何で知りましたか？<span class="req">必須</span>
-<p class="note">当てはまるものをすべて選んでください。</p>
-<div class="checks" id="sourceChecks">
-<label><input type="checkbox" name="source" value="2026年に参加した">2026年に参加した</label>
-<label><input type="checkbox" name="source" value="公式LINE">公式LINE</label>
-<label><input type="checkbox" name="source" value="Instagram">Instagram</label>
-<label><input type="checkbox" name="source" value="X（旧Twitter）">X（旧Twitter）</label>
-<label><input type="checkbox" name="source" value="Facebook">Facebook</label>
-<label><input type="checkbox" name="source" value="TikTok">TikTok</label>
-<label><input type="checkbox" name="source" value="YouTube">YouTube</label>
-<label><input type="checkbox" name="source" value="公式サイト">公式サイト</label>
-<label><input type="checkbox" name="source" value="合唱団・学校からの案内">合唱団・学校からの案内</label>
-<label><input type="checkbox" name="source" value="家族・知人の紹介">家族・知人の紹介</label>
-<label><input type="checkbox" name="source" value="チラシ・ポスター">チラシ・ポスター</label>
-<label><input type="checkbox" name="source" value="新聞・テレビ・ラジオ">新聞・テレビ・ラジオ</label>
-<label><input type="checkbox" name="source" value="その他" id="sourceOtherCheck">その他</label>
-</div>
-<input type="text" id="sourceOther" class="hidden" placeholder="その他の内容をご記入ください">
-</div>
-<div class="q">一緒に申し込む小中学生のお子様<span class="req">必須</span>
-<p class="note">保護者の方ご自身と小中学生のお子様（複数名可）の分は、まとめて1回のお申し込み・1回のご決済で行えます。上で入力した方以外に、一緒に申し込む小中学生のお子様がいる場合は「いる」を選び、お子様ごとに入力してください（大人同士のまとめてのお申し込みはできません）。</p>
-<div class="radios">
-<label><input type="radio" name="hasChildren" value="いない" required checked>いない</label>
-<label><input type="radio" name="hasChildren" value="いる">いる</label>
-</div>
-<div id="childrenArea" class="hidden">
+</fieldset>
+<fieldset id="childrenArea" class="hidden" disabled>
+<h3 class="sec">お子様（小中学生）の情報</h3>
+<p class="note">2027年度に小学1年生〜中学3年生のお子様（2011年4月2日〜2021年4月1日生まれ）が対象です。保護者の方ご自身と小中学生のお子様の分は、まとめて1回のお申し込み・1回のご決済で行えます。</p>
+<p class="note">保護者の方とお子様が同じパート・同じ立ち位置を選ばれた場合は、隣のお席にご案内します。パートや立ち位置が異なる場合は、隣のお席にはなりません。</p>
+<p class="note hidden" id="kidsOnlyNote">小・中学生のご参加には、保護者の方の同伴が必要です。観覧のみの保護者の方は、別途、観覧チケットのご購入が必要です。</p>
 <div id="childList"></div>
 <button type="button" class="subBtn" id="addChildBtn">＋ お子様を追加</button>
-<p class="note">合同練習・DAY1の参加予定は、上で入力した方と同じとして扱います。</p>
-</div>
-</div>
+</fieldset>
 <template id="childTpl">
 <div class="child">
 <h4>お子様<span class="childNo"></span></h4>
+<label>続柄<span class="req">必須</span>
+<select class="cRelation" required><option value="">選択してください</option><option value="親">申込者はお子様の親</option><option value="祖父母">申込者はお子様の祖父母</option><option value="その他の保護者">申込者はお子様のその他の保護者</option></select>
+</label>
 <div class="nameRow">
 <label>姓<span class="req">必須</span><input type="text" class="cLastName" required></label>
 <label>名<span class="req">必須</span><input type="text" class="cFirstName" required></label>
@@ -229,6 +206,97 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <button type="button" class="subBtn cRemove">このお子様を削除</button>
 </div>
 </template>
+<div class="q" id="sizeArea">Tシャツサイズ表
+<img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
+<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。</p>
+</div>
+<h3 class="sec">サポートが必要な方</h3>
+<div class="q">このお申し込みの参加者の中に、当日サポートが必要な方はいますか<span class="req">必須</span>
+<div class="radios">
+<label><input type="radio" name="supportNeeded" value="いない" required checked>いない</label>
+<label><input type="radio" name="supportNeeded" value="いる">いる</label>
+</div>
+<p class="note">障害などにより、当日サポートが必要な方がいる場合は「いる」を選んでください。</p>
+</div>
+<fieldset id="supportArea" class="hidden" disabled>
+<p class="note">サポートが必要な方とサポートする方は、隣のお席にご案内します。そのため、サポートする方は、原則として合唱に参加される方に限ります。合唱に参加しない付き添いの方（介助者）が必要な場合は、公式LINEまでお申し出ください。お二人とも、同じパート・同じ立ち位置をお選びください。当選・落選は、お二人一緒に決まります。</p>
+<label>サポートが必要な方のお名前<span class="req">必須</span><input type="text" id="supportPerson" required>
+<p class="note">このお申し込みに含まれる方（申込者ご本人またはお子様）のお名前をご記入ください。</p></label>
+<label>必要なサポートの内容<span class="req">必須</span><textarea id="supportDetail" required></textarea>
+<p class="note">例：車椅子を使用、歩行の補助が必要、視覚・聴覚のサポートが必要 など</p></label>
+<div class="q">サポートする方<span class="req">必須</span>
+<div class="radios">
+<label><input type="radio" name="supporterType" value="このお申し込みに含まれる方" required>このお申し込みに含まれる方</label>
+<label><input type="radio" name="supporterType" value="別にお申し込みの方">別にお申し込みの方</label>
+</div>
+<p class="note">別にお申し込みの方の場合は、その方のお申し込みでも、この欄にサポートが必要な方のお名前をご記入いただくようお伝えください。</p>
+</div>
+<label>サポートする方のお名前<span class="req">必須</span><input type="text" id="supporterName" required></label>
+<label>サポートする方のフリガナ<span class="req">必須</span><input type="text" id="supporterFurigana" required>
+<p class="note">フルネームで正しくご記入ください。お名前が異なる場合は照合できません。</p></label>
+</fieldset>
+<h3 class="sec">一緒に参加したい方</h3>
+<p class="note">別々にお申し込みのご家族・ご友人などで、一緒に参加したい方がいれば、5名までご記入ください（任意）。このお申し込みに含めたお子様は記入不要です。</p>
+<p class="note">お互いに当選された場合、同じパート・同じ立ち位置を選ばれていれば、できるだけ近くの席になるよう配慮いたします（お約束はできません）。パートや立ち位置が異なる場合は、近くのお席にはできません。当選・落選は、お一人ずつ決まります（サポートが必要な方とサポートする方を除く）。</p>
+<p class="note">お相手の方のお名前は、フルネームで正しくご記入ください。お名前が異なる場合は照合できません。お相手の方にも、あなたのお名前を書いていただくと確実です。</p>
+<div id="companionList">
+<div class="companion">
+<label>1人目のお名前<input type="text" class="pName"></label>
+<label>1人目のフリガナ<input type="text" class="pFurigana"></label>
+</div>
+<div class="companion">
+<label>2人目のお名前<input type="text" class="pName"></label>
+<label>2人目のフリガナ<input type="text" class="pFurigana"></label>
+</div>
+<div class="companion">
+<label>3人目のお名前<input type="text" class="pName"></label>
+<label>3人目のフリガナ<input type="text" class="pFurigana"></label>
+</div>
+<div class="companion">
+<label>4人目のお名前<input type="text" class="pName"></label>
+<label>4人目のフリガナ<input type="text" class="pFurigana"></label>
+</div>
+<div class="companion">
+<label>5人目のお名前<input type="text" class="pName"></label>
+<label>5人目のフリガナ<input type="text" class="pFurigana"></label>
+</div>
+</div>
+<h3 class="sec">合同練習・DAY1・その他</h3>
+<div class="q">合同練習の参加予定日<span class="req">必須</span>
+<div class="radios">
+<label><input type="radio" name="rehearsal" value="4/10（土）のみ" required>4/10（土）のみ</label>
+<label><input type="radio" name="rehearsal" value="4/24（土）のみ">4/24（土）のみ</label>
+<label><input type="radio" name="rehearsal" value="両日とも">両日とも</label>
+<label><input type="radio" name="rehearsal" value="未定">未定</label>
+</div>
+<p class="note">合同練習（大津市民会館・13:00〜17:00（仮））は、全2回中、最低1回の参加が必須です。現時点の予定でかまいません。お子様と一緒にお申し込みの場合は、参加者全員の予定としてお答えください。</p>
+</div>
+<div class="q">DAY1（5/7）の参加<span class="req">必須</span>
+<div class="radios">
+<label><input type="radio" name="day1" value="参加する" required>参加する</label>
+<label><input type="radio" name="day1" value="参加しない">参加しない</label>
+</div>
+<p class="note">DAY1（公開リハーサル出演・ナイトバブル観覧）は自由参加です。合唱参加費に含まれるため、追加の参加費はかかりません（交通・駐車場・駐輪場等の利用料金は別途必要です）。</p>
+</div>
+<div class="q">このプロジェクトを何で知りましたか？<span class="req">必須</span>
+<p class="note">当てはまるものをすべて選んでください。</p>
+<div class="checks" id="sourceChecks">
+<label><input type="checkbox" name="source" value="2026年に参加した">2026年に参加した</label>
+<label><input type="checkbox" name="source" value="公式LINE">公式LINE</label>
+<label><input type="checkbox" name="source" value="Instagram">Instagram</label>
+<label><input type="checkbox" name="source" value="X（旧Twitter）">X（旧Twitter）</label>
+<label><input type="checkbox" name="source" value="Facebook">Facebook</label>
+<label><input type="checkbox" name="source" value="TikTok">TikTok</label>
+<label><input type="checkbox" name="source" value="YouTube">YouTube</label>
+<label><input type="checkbox" name="source" value="公式サイト">公式サイト</label>
+<label><input type="checkbox" name="source" value="合唱団・学校からの案内">合唱団・学校からの案内</label>
+<label><input type="checkbox" name="source" value="家族・知人の紹介">家族・知人の紹介</label>
+<label><input type="checkbox" name="source" value="チラシ・ポスター">チラシ・ポスター</label>
+<label><input type="checkbox" name="source" value="新聞・テレビ・ラジオ">新聞・テレビ・ラジオ</label>
+<label><input type="checkbox" name="source" value="その他" id="sourceOtherCheck">その他</label>
+</div>
+<input type="text" id="sourceOther" class="hidden" placeholder="その他の内容をご記入ください">
+</div>
 <label>備考<textarea id="note"></textarea></label>
 <div class="q">参加条件の確認<span class="req">必須</span>
 <div class="policy">
@@ -240,7 +308,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <p>・参加費は、当選通知後にご案内する専用ページより、ご自身で決済手続きをお願いします（自動決済ではございません）。お支払い期限は、一次募集の当選者は2026年11月23日（月）まで、二次募集の当選者は2026年12月24日（木）までです。</p>
 <p>・合唱参加費について、表示の金額以外に追加でご負担いただく費用はございません。ただし、会場までの交通費、駐車場・駐輪場等の利用料金は別途必要です。</p>
 <p>・DAY2自体が中止となった場合は参加費を全額返金いたします。合同練習やDAY1のみの中止、内容変更の場合の返金はございません。振替日の設定はございません。</p>
-<p>・お申し込みは個人単位です。代表者によるまとめてのお申し込みは基本不可です。ただし、小中学生は保護者の方による代理でのお申し込みが可能で、保護者の方ご自身と小中学生のお子様（複数名可）の分は、まとめて1回のお申し込み・1回のご決済で行えます。</p>
+<p>・お申し込みは個人単位です。代表者によるまとめてのお申し込みは基本不可です。ただし、小中学生は保護者の方による代理でのお申し込みが可能で、保護者の方ご自身と小中学生のお子様（5名まで）の分は、まとめて1回のお申し込み・1回のご決済で行えます。高校生以上の方（ご家族・ご友人を含む）は、それぞれご本人のLINEアカウントからお申し込みください。</p>
 <p>・小・中学生は保護者同伴必須、高校生は保護者同伴推奨です。観覧のみの保護者の方は、別途、観覧チケットのご購入が必要です。</p>
 </div>
 <label class="agree"><input type="checkbox" id="termsAgree" required>上記の参加条件を確認しました</label>
@@ -256,8 +324,9 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <p>Biwako Live Art Association（以下「主催者」）は、本フォームでお預かりした個人情報を、以下のとおり取り扱います。</p>
 <p>1. 利用目的<br>ONE VOICE 1000人合唱プロジェクトの参加者選考、当選・落選のご連絡、参加費のお支払い案内、練習・本番に関するご案内、当日の運営（座席・パート配置、オリジナルTシャツの準備等）、緊急時のご連絡、ならびに今後の企画の参考とするための統計的な分析に利用します。</p>
 <p>2. 第三者への提供<br>法令に基づく場合を除き、ご本人の同意なく第三者に提供することはありません。ただし、上記の利用目的の達成に必要な範囲で、決済代行事業者等の業務委託先に提供する場合があります。その場合は、委託先に対して適切な管理を求めます。</p>
-<p>3. 管理<br>お預かりした個人情報は適切に管理し、漏えい・紛失等の防止に努めます。</p>
-<p>4. お問い合わせ<br>個人情報の開示・訂正・削除等のご依頼やお問い合わせは、公式LINEアカウントまでご連絡ください。</p>
+<p>3. サポートが必要な方の情報<br>障害などサポートの内容に関する情報は、ご本人（未成年の方は保護者の方）の同意を得たうえでご記入ください。お預かりした情報は、座席の配置や当日の運営上の配慮のためにのみ利用します。</p>
+<p>4. 管理<br>お預かりした個人情報は適切に管理し、漏えい・紛失等の防止に努めます。</p>
+<p>5. お問い合わせ<br>個人情報の開示・訂正・削除等のご依頼やお問い合わせは、公式LINEアカウントまでご連絡ください。</p>
 </div>
 <label class="agree"><input type="checkbox" id="privacyAgree" required>個人情報の取り扱いに同意します</label>
 </div>
@@ -270,7 +339,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <script>
 var LIFF_ID = '2011606835-2Q14m0H5';
-// 応募の保存先（2026-10-16 作成の新しい Apps Script）
+// 応募の保存先（兒玉のアカウントの Apps Script）
 var API_URL = 'https://script.google.com/macros/s/AKfycbw3Uyao6sB70pf8ypkqD1sdYe6Qrs32Q7NxH0XAS7DOqwp3f1mP2xVYzGUKs2jywWxP5w/exec';
 // 友だち確認の予備（LIFFで確認できないときだけ使う。福井さんの元のスクリプト）
 var FRIEND_CHECK_URL = 'https://script.google.com/macros/s/AKfycbxOk-STkS8VQnpudWMjzlWDXWMCrUKT0p0lcp9C-dSA3T_crt_oNvv79g_RLuxI8y10tw/exec';
@@ -343,6 +412,7 @@ function updateGuardian() {
   var age = parseInt(val('age'), 10);
   var minor = !isNaN(age) && age < 18;
   document.getElementById('guardianName').required = minor;
+  document.getElementById('guardianArea').className = minor ? '' : 'hidden';
 }
 document.getElementById('birthday').addEventListener('change', function () {
   var b = new Date(val('birthday'));
@@ -369,15 +439,21 @@ document.getElementById('zipBtn').addEventListener('click', function () {
       document.getElementById('city').value = r.results[0].address2;
       document.getElementById('address').value = r.results[0].address3;
     })
-    .catch(function () { alert('確認用ページでは住所検索は動きません（本番では郵便番号から自動入力されます）'); });
+    .catch(function () { alert('住所の検索に失敗しました。お手数ですが直接ご入力ください。'); });
 });
 
 
-// お子様：「いる」のときだけ入力欄を表示し、1人以上を必須にする
-var MAX_CHILDREN = 10;
+// 申込みの種類：選んだ内容に合わせて「ご自身」「お子様」の欄を出し分ける
+// 隠した欄は fieldset ごと disabled にして、必須チェックの対象から外す
+var MAX_CHILDREN = 5;
+function hasSelf() { var t = radioVal('applyType'); return t === '自分だけ' || t === '自分と小中学生の子ども'; }
+function hasKids() { var t = radioVal('applyType'); return t === '自分と小中学生の子ども' || t === '小中学生の子どもだけ'; }
 function renumberChildren() {
   var cards = document.querySelectorAll('#childList .child');
-  for (var i = 0; i < cards.length; i++) cards[i].querySelector('.childNo').textContent = (i + 1) + '人目';
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].querySelector('.childNo').textContent = (i + 1) + '人目';
+    cards[i].querySelector('.cRemove').className = cards.length > 1 ? 'subBtn cRemove' : 'subBtn cRemove hidden';
+  }
   document.getElementById('addChildBtn').disabled = cards.length >= MAX_CHILDREN;
 }
 function addChild() {
@@ -385,32 +461,62 @@ function addChild() {
   var node = document.getElementById('childTpl').content.firstElementChild.cloneNode(true);
   node.querySelector('.cRemove').addEventListener('click', function () {
     node.parentNode.removeChild(node);
-    if (document.querySelectorAll('#childList .child').length === 0) {
-      document.querySelector('input[name="hasChildren"][value="いない"]').checked = true;
-      updateChildrenArea();
-    }
     renumberChildren();
   });
   document.getElementById('childList').appendChild(node);
   renumberChildren();
 }
-function updateChildrenArea() {
-  var on = radioVal('hasChildren') === 'いる';
-  document.getElementById('childrenArea').className = on ? '' : 'hidden';
+function updateApplyType() {
+  var self = hasSelf(), kids = hasKids();
+  var selfArea = document.getElementById('selfArea'), kidsArea = document.getElementById('childrenArea');
+  selfArea.disabled = !self; selfArea.className = self ? '' : 'hidden';
+  kidsArea.disabled = !kids; kidsArea.className = kids ? '' : 'hidden';
+  document.getElementById('kidsOnlyNote').className = radioVal('applyType') === '小中学生の子どもだけ' ? 'note' : 'note hidden';
   var list = document.getElementById('childList');
-  if (on && list.children.length === 0) addChild();
-  if (!on) list.innerHTML = '';
+  if (kids && list.children.length === 0) addChild();
+  if (!kids) list.innerHTML = '';
   renumberChildren();
 }
-var hasChildrenRadios = document.querySelectorAll('input[name="hasChildren"]');
-for (var hc = 0; hc < hasChildrenRadios.length; hc++) hasChildrenRadios[hc].addEventListener('change', updateChildrenArea);
+var applyTypeRadios = document.querySelectorAll('input[name="applyType"]');
+for (var at = 0; at < applyTypeRadios.length; at++) applyTypeRadios[at].addEventListener('change', updateApplyType);
 document.getElementById('addChildBtn').addEventListener('click', addChild);
-function childVals() {
-  var cards = document.querySelectorAll('#childList .child');
+// 一緒に参加したい方：名前とフリガナは片方だけの入力を不可にする
+function companionVals() {
+  var rows = document.querySelectorAll('#companionList .companion');
   var list = [];
+  for (var i = 0; i < rows.length; i++) {
+    var n = rows[i].querySelector('.pName').value.trim();
+    var f = rows[i].querySelector('.pFurigana').value.trim();
+    if (n || f) list.push({ name: n, furigana: f });
+  }
+  return list;
+}
+function updateCompanionRequired() {
+  var rows = document.querySelectorAll('#companionList .companion');
+  for (var i = 0; i < rows.length; i++) {
+    var n = rows[i].querySelector('.pName'), f = rows[i].querySelector('.pFurigana');
+    var any = n.value.trim() !== '' || f.value.trim() !== '';
+    n.required = any; f.required = any;
+  }
+}
+document.getElementById('companionList').addEventListener('input', updateCompanionRequired);
+// サポートが必要な方：「いる」のときだけ入力欄を出し、必須にする
+function updateSupport() {
+  var on = radioVal('supportNeeded') === 'いる';
+  var area = document.getElementById('supportArea');
+  area.disabled = !on; area.className = on ? '' : 'hidden';
+}
+var supportRadios = document.querySelectorAll('input[name="supportNeeded"]');
+for (var sr = 0; sr < supportRadios.length; sr++) supportRadios[sr].addEventListener('change', updateSupport);
+function supv(id) { return radioVal('supportNeeded') === 'いる' ? val(id) : ''; }
+function childVals() {
+  var list = [];
+  if (!hasKids()) return list;
+  var cards = document.querySelectorAll('#childList .child');
   for (var i = 0; i < cards.length; i++) {
     var c = cards[i];
     list.push({
+      relation: c.querySelector('.cRelation').value,
       lastName: c.querySelector('.cLastName').value,
       firstName: c.querySelector('.cFirstName').value,
       name: c.querySelector('.cLastName').value + ' ' + c.querySelector('.cFirstName').value,
@@ -444,7 +550,7 @@ function sourceVals() {
 
 document.getElementById('appForm').addEventListener('submit', function (e) {
   e.preventDefault();
-  if (val('birthday') > '2021-04-01') {
+  if (hasSelf() && val('birthday') > '2021-04-01') {
     alert('小学生以上の方が対象です（2021年4月1日以前に生まれた方）。小学生未満の方はご参加いただけません。');
     document.getElementById('birthday').scrollIntoView({ block: 'center' });
     return;
@@ -454,36 +560,47 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     document.getElementById('sourceChecks').scrollIntoView({ block: 'center' });
     return;
   }
+  function sv(id) { return hasSelf() ? val(id) : ''; }
   var data = {
     lineUserId: profile.userId,
     displayName: profile.displayName,
+    applyType: radioVal('applyType'),
+    selfParticipates: hasSelf() ? 'はい' : 'いいえ',
     lastName: val('lastName'),
     firstName: val('firstName'),
     name: val('lastName') + ' ' + val('firstName'),
     furigana: val('furigana'),
-    gender: val('gender'),
-    birthday: val('birthday'),
-    age: val('age'),
-    guardianName: val('guardianName'),
+    gender: sv('gender'),
+    birthday: sv('birthday'),
+    age: sv('age'),
+    guardianName: sv('guardianName'),
     zipcode: val('zipcode'),
     pref: val('pref'),
     city: val('city'),
     address: val('address'),
     phone: val('phone'),
     email: val('email'),
-    part1: val('part1'),
-    part2: val('part2'),
-    position: val('position'),
-    experienceYears: val('experienceYears'),
-    experience: val('experience'),
-    joined2026: radioVal('joined2026'),
-    affiliation: val('affiliation'),
-    tshirt: val('tshirt'),
+    part1: sv('part1'),
+    part2: sv('part2'),
+    position: sv('position'),
+    experienceYears: sv('experienceYears'),
+    experience: sv('experience'),
+    joined2026: hasSelf() ? radioVal('joined2026') : '',
+    affiliation: sv('affiliation'),
+    tshirt: sv('tshirt'),
     rehearsal: radioVal('rehearsal'),
     day1: radioVal('day1'),
     source: sourceVals().join('、'),
     sourceOther: val('sourceOther'),
     childrenCount: childVals().length,
+    supportNeeded: radioVal('supportNeeded'),
+    supportPerson: supv('supportPerson'),
+    supportDetail: supv('supportDetail'),
+    supporterType: radioVal('supportNeeded') === 'いる' ? radioVal('supporterType') : '',
+    supporterName: supv('supporterName'),
+    supporterFurigana: supv('supporterFurigana'),
+    companionsCount: companionVals().length,
+    companions: JSON.stringify(companionVals()),
     children: JSON.stringify(childVals()),
     note: val('note'),
     termsAgree: document.getElementById('termsAgree').checked ? '確認済み' : '',
