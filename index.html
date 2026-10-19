@@ -139,12 +139,6 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </label>
 <label>これまでの合唱経験<span class="req">必須</span><textarea id="experience" required></textarea>
 <p class="note">所属した団体・部活動、期間などを簡単にご記入ください。</p></label>
-<div class="q">2026年のONE VOICEに参加されましたか？<span class="req">必須</span>
-<div class="radios">
-<label><input type="radio" name="joined2026" value="参加した" required>参加した</label>
-<label><input type="radio" name="joined2026" value="参加していない">参加していない</label>
-</div>
-</div>
 <label>所属団体・学校名<input type="text" id="affiliation">
 <p class="note">合唱団に所属されている方は団体名を、学生の方は学校名をご記入ください。</p>
 </label>
@@ -165,7 +159,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <h3 class="sec">お子様（小中学生）の情報</h3>
 <p class="note">2027年度に小学1年生〜中学3年生のお子様（2011年4月2日〜2021年4月1日生まれ）が対象です。保護者の方ご自身と小中学生のお子様の分は、まとめて1回のお申し込み・1回のご決済で行えます。</p>
 <p class="note">保護者の方とお子様が同じパート・同じ立ち位置を選ばれた場合は、隣のお席にご案内します。パートや立ち位置が異なる場合は、隣のお席にはなりません。</p>
-<p class="note hidden" id="kidsOnlyNote">小・中学生のご参加には、保護者の方の同伴が必要です。観覧のみの保護者の方は、別途、観覧チケットのご購入が必要です。</p>
+<p class="note hidden" id="kidsOnlyNote">小・中学生は、合同練習、DAY1、DAY2のすべてにおいて、保護者の付き添いが必要です。DAY1・DAY2で保護者の方が合唱に参加されない場合は、各日の観覧チケットを別途ご購入ください。</p>
 <div id="childList"></div>
 <button type="button" class="subBtn" id="addChildBtn">＋ お子様を追加</button>
 </fieldset>
@@ -208,7 +202,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </template>
 <div class="q" id="sizeArea">Tシャツサイズ表
 <img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
-<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。</p>
+<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。お申し込み後のサイズ変更はできませんので、サイズをよくご確認ください。</p>
 </div>
 <h3 class="sec">サポートが必要な方</h3>
 <div class="q">このお申し込みの参加者の中に、当日サポートが必要な方はいますか<span class="req">必須</span>
@@ -219,7 +213,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <p class="note">障害などにより、当日サポートが必要な方がいる場合は「いる」を選んでください。</p>
 </div>
 <fieldset id="supportArea" class="hidden" disabled>
-<p class="note">サポートが必要な方とサポートする方は、隣のお席にご案内します。そのため、サポートする方は、原則として合唱に参加される方に限ります。合唱に参加しない付き添いの方（介助者）が必要な場合は、公式LINEまでお申し出ください。お二人とも、同じパート・同じ立ち位置をお選びください。当選・落選は、お二人一緒に決まります。</p>
+<p class="note">サポートが必要な方とサポートする方は、隣のお席にご案内します。そのため、サポートする方は、原則として合唱に参加される方に限ります。お二人とも、同じパート・同じ立ち位置をお選びください。当選・落選は、お二人一緒に決まります。合唱に参加しない介助者が必要な場合は、公式LINEより事前にご相談ください。介助者は原則として1名までとし、観覧チケットを別途ご購入いただきます（ご家族・お知り合い向けの先行販売をご利用いただけます）。必要な介助のため合唱専用エリアへ入っていただくことはできます。</p>
 <label>サポートが必要な方のお名前<span class="req">必須</span><input type="text" id="supportPerson" required>
 <p class="note">このお申し込みに含まれる方（申込者ご本人またはお子様）のお名前をご記入ください。</p></label>
 <label>必要なサポートの内容<span class="req">必須</span><textarea id="supportDetail" required></textarea>
@@ -269,7 +263,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label><input type="radio" name="rehearsal" value="両日とも">両日とも</label>
 <label><input type="radio" name="rehearsal" value="未定">未定</label>
 </div>
-<p class="note">合同練習（大津市民会館・13:00〜17:00（仮））は、全2回中、最低1回の参加が必須です。現時点の予定でかまいません。お子様と一緒にお申し込みの場合は、参加者全員の予定としてお答えください。</p>
+<p class="note">合同練習（大津市民会館・13:00〜17:00（予定））は、全2回中、最低1回の参加が必須です。現時点の予定でかまいません。お子様と一緒にお申し込みの場合は、参加者全員の予定としてお答えください。</p>
 </div>
 <div class="q">DAY1（5/7）の参加<span class="req">必須</span>
 <div class="radios">
@@ -278,10 +272,20 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <p class="note">DAY1（公開リハーサル出演・ナイトバブル観覧）は自由参加です。合唱参加費に含まれるため、追加の参加費はかかりません（交通・駐車場・駐輪場等の利用料金は別途必要です）。</p>
 </div>
+<div class="q">2026年のONE VOICEとの関わり<span class="req">必須</span>
+<p class="note">当てはまるものを1つ選んでください。</p>
+<div class="checks" id="historyChecks">
+<label><input type="radio" name="history2026" value="2026年に参加した" required>2026年に参加した</label>
+<label><input type="radio" name="history2026" value="2026年に公式LINEに登録し、参加を検討したが見送った">2026年に公式LINEに登録し、参加を検討したが見送った</label>
+<label><input type="radio" name="history2026" value="2026年にエントリーしたが、諸事情でキャンセルした">2026年にエントリーしたが、諸事情でキャンセルした</label>
+<label><input type="radio" name="history2026" value="2026年も知っていたが、今回初めてエントリーする">2026年も知っていたが、今回初めてエントリーする</label>
+<label><input type="radio" name="history2026" value="今回初めて当イベントのことを知った">今回初めて当イベントのことを知った</label>
+</div>
+</div>
+<fieldset id="sourceArea" class="hidden" disabled>
 <div class="q">このプロジェクトを何で知りましたか？<span class="req">必須</span>
 <p class="note">当てはまるものをすべて選んでください。</p>
 <div class="checks" id="sourceChecks">
-<label><input type="checkbox" name="source" value="2026年に参加した">2026年に参加した</label>
 <label><input type="checkbox" name="source" value="公式LINE">公式LINE</label>
 <label><input type="checkbox" name="source" value="Instagram">Instagram</label>
 <label><input type="checkbox" name="source" value="X（旧Twitter）">X（旧Twitter）</label>
@@ -297,19 +301,20 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <input type="text" id="sourceOther" class="hidden" placeholder="その他の内容をご記入ください">
 </div>
+</fieldset>
 <label>備考<textarea id="note"></textarea></label>
 <div class="q">参加条件の確認<span class="req">必須</span>
 <div class="policy">
 <p>・参加資格は、小学生以上かつ合唱経験者の方です（合唱団、学校の部活動・授業・行事、本プロジェクトへの過去参加などを含みます）。小学生未満の方はご参加いただけません。</p>
-<p>・合同練習（2027年4月10日・4月24日、大津市民会館、13:00〜17:00（仮））は、全2回中、最低1回の参加が必須です。</p>
+<p>・合同練習（2027年4月10日・4月24日、大津市民会館、13:00〜17:00（予定））は、全2回中、最低1回の参加が必須です。</p>
 <p>・歌唱は基本的に暗譜でのご参加をお願いします（花火をバックに歌うブロックは暗譜必須です）。</p>
 <p>・立ち位置（歌唱方向）は、各ブロックとも人数に限りがあるため、ご希望に添えない場合がございます。歌唱方向は当選通知の際にお知らせしますので、内容をご確認のうえ、ご決済ください。</p>
 <p>・ご決済後は、原則として歌唱方向・パートを変更しません。ただし、ステージ設備の変更や欠員への対応など、やむを得ない事情がある場合に限り、変更をお願いすることがあります。その場合は、できるだけ早く公式LINEでご連絡します。</p>
-<p>・参加費は、当選通知後にご案内する専用ページより、ご自身で決済手続きをお願いします（自動決済ではございません）。お支払い期限は、一次募集の当選者は2026年11月23日（月）まで、二次募集の当選者は2026年12月24日（木）までです。</p>
+<p>・参加費は、当選通知後にご案内する専用ページより、ご自身で決済手続きをお願いします（自動決済ではございません）。お支払い期限は、当選発表後から2026年11月23日（月）までです。期限までに決済が確認できない場合は、当選が自動的に取り消されます。期限後の決済には対応できませんので、あらかじめご了承ください。</p>
 <p>・合唱参加費について、表示の金額以外に追加でご負担いただく費用はございません。ただし、会場までの交通費、駐車場・駐輪場等の利用料金は別途必要です。</p>
 <p>・DAY2自体が中止となった場合は参加費を全額返金いたします。合同練習やDAY1のみの中止、内容変更の場合の返金はございません。振替日の設定はございません。</p>
 <p>・お申し込みは個人単位です。代表者によるまとめてのお申し込みは基本不可です。ただし、小中学生は保護者の方による代理でのお申し込みが可能で、保護者の方ご自身と小中学生のお子様（5名まで）の分は、まとめて1回のお申し込み・1回のご決済で行えます。高校生以上の方（ご家族・ご友人を含む）は、それぞれご本人のLINEアカウントからお申し込みください。</p>
-<p>・小・中学生は保護者同伴必須、高校生は保護者同伴推奨です。観覧のみの保護者の方は、別途、観覧チケットのご購入が必要です。</p>
+<p>・小・中学生は、合同練習、DAY1、DAY2のすべてにおいて、保護者の付き添いが必要です。DAY1・DAY2で保護者の方が合唱に参加されない場合は、各日の観覧チケットを別途ご購入ください。保護者の方は合唱専用エリアには同席いただけませんが、できるだけお子様に近い観覧席をご案内できるよう配慮します。高校生は保護者同伴推奨です。</p>
 </div>
 <label class="agree"><input type="checkbox" id="termsAgree" required>上記の参加条件を確認しました</label>
 </div>
@@ -541,7 +546,18 @@ document.getElementById('sourceOtherCheck').addEventListener('change', function 
   other.className = this.checked ? '' : 'hidden';
   other.required = this.checked;
 });
+// 何で知ったか：2026年との関わりが「今回初めて当イベントのことを知った」の方にだけ聞く
+function needSource() {
+  return radioVal('history2026') === '今回初めて当イベントのことを知った';
+}
+function updateSourceArea() {
+  var on = needSource(), area = document.getElementById('sourceArea');
+  area.disabled = !on; area.className = on ? '' : 'hidden';
+}
+var historyRadios = document.querySelectorAll('input[name="history2026"]');
+for (var hr = 0; hr < historyRadios.length; hr++) historyRadios[hr].addEventListener('change', updateSourceArea);
 function sourceVals() {
+  if (!needSource()) return [];
   var els = document.querySelectorAll('input[name="source"]:checked');
   var vals = [];
   for (var i = 0; i < els.length; i++) vals.push(els[i].value);
@@ -555,7 +571,7 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     document.getElementById('birthday').scrollIntoView({ block: 'center' });
     return;
   }
-  if (sourceVals().length === 0) {
+  if (needSource() && sourceVals().length === 0) {
     alert('「このプロジェクトを何で知りましたか？」を1つ以上選んでください');
     document.getElementById('sourceChecks').scrollIntoView({ block: 'center' });
     return;
@@ -585,13 +601,13 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     position: sv('position'),
     experienceYears: sv('experienceYears'),
     experience: sv('experience'),
-    joined2026: hasSelf() ? radioVal('joined2026') : '',
     affiliation: sv('affiliation'),
     tshirt: sv('tshirt'),
     rehearsal: radioVal('rehearsal'),
     day1: radioVal('day1'),
+    history2026: radioVal('history2026'),
     source: sourceVals().join('、'),
-    sourceOther: val('sourceOther'),
+    sourceOther: needSource() ? val('sourceOther') : '',
     childrenCount: childVals().length,
     supportNeeded: radioVal('supportNeeded'),
     supportPerson: supv('supportPerson'),
