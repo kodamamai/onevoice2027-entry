@@ -270,12 +270,38 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <p class="note">合同練習（大津市民会館・13:00〜17:00（予定））は、全2回中、最低1回の参加が必須です。現時点の予定でかまいません。お子様と一緒にお申し込みの場合は、参加者全員の予定としてお答えください。</p>
 </div>
-<div class="q">DAY1（5/7）の参加<span class="req">必須</span>
+<div class="q">DAY1（5/7）の参加予定<span class="req">必須</span>
 <div class="radios">
-<label><input type="radio" name="day1" value="参加する" required>参加する</label>
-<label><input type="radio" name="day1" value="参加しない">参加しない</label>
+<label><input type="radio" name="day1" value="参加する" required>参加する予定</label>
+<label><input type="radio" name="day1" value="参加しない">参加しない予定</label>
+<label><input type="radio" name="day1" value="未定">未定</label>
 </div>
-<p class="note">DAY1（公開リハーサル出演・ナイトバブル観覧）は自由参加です。合唱参加費に含まれるため、追加の参加費はかかりません（交通・駐車場・駐輪場等の利用料金は別途必要です）。</p>
+<p class="note">DAY1（公開リハーサル出演・ナイトバブル観覧）は自由参加です。現時点のご予定でかまいません。合唱参加費に含まれるため、追加の参加費はかかりません（交通・駐車場・駐輪場等の利用料金は別途必要です）。</p>
+</div>
+<div class="q hidden" id="transportDay1Area">DAY1（5/7）の会場までの交通手段（予定）<span class="req">必須</span>
+<div class="checks">
+<label><input type="radio" name="transportDay1" value="車（駐車場を利用）">車（駐車場を利用）</label>
+<label><input type="radio" name="transportDay1" value="シャトルバス（草津トヨタアリーナ発着）">シャトルバス（草津トヨタアリーナ発着）</label>
+<label><input type="radio" name="transportDay1" value="直通バス（京都駅発着）">直通バス（京都駅発着）</label>
+<label><input type="radio" name="transportDay1" value="直通バス（大阪駅発着）">直通バス（大阪駅発着）</label>
+<label><input type="radio" name="transportDay1" value="宿泊付きバスプラン（5/7・5/8の2泊）">宿泊付きバスプラン（5/7・5/8の2泊）</label>
+<label><input type="radio" name="transportDay1" value="その他（送迎・自転車・徒歩など）">その他（送迎・自転車・徒歩など）</label>
+<label><input type="radio" name="transportDay1" value="未定">未定</label>
+</div>
+<p class="note">※ 運営の準備（駐車場の広さやバスの台数など）の目安としてお伺いするものです。現時点のご予定でかまいません。<br>※ ここでのご回答は交通手段のお申し込みではありません。実際には、ここで選んだものと違う交通手段をご利用いただいても問題ございません。<br>※ 交通手段のお申し込みは、合唱参加の当選が決まり、参加費をお支払いいただく際に、別途お手続きいただきます。</p>
+</div>
+<div class="q">DAY2（5/8）の会場までの交通手段（予定）<span class="req">必須</span>
+<div class="checks">
+<label><input type="radio" name="transportDay2" value="車（合唱参加者専用駐車場を利用）" required>車（合唱参加者専用駐車場を利用）</label>
+<label><input type="radio" name="transportDay2" value="シャトルバス（草津トヨタアリーナ発着）">シャトルバス（草津トヨタアリーナ発着）</label>
+<label><input type="radio" name="transportDay2" value="直通バス（京都駅発着）">直通バス（京都駅発着）</label>
+<label><input type="radio" name="transportDay2" value="直通バス（大阪駅発着）">直通バス（大阪駅発着）</label>
+<label><input type="radio" name="transportDay2" value="宿泊付きバスプラン（5/7・5/8の2泊）">宿泊付きバスプラン（5/7・5/8の2泊）</label>
+<label><input type="radio" name="transportDay2" value="宿泊付きバスプラン（5/8のみ1泊）">宿泊付きバスプラン（5/8のみ1泊）</label>
+<label><input type="radio" name="transportDay2" value="その他（送迎・自転車・徒歩など）">その他（送迎・自転車・徒歩など）</label>
+<label><input type="radio" name="transportDay2" value="未定">未定</label>
+</div>
+<p class="note">※ 運営の準備（駐車場の広さやバスの台数など）の目安としてお伺いするものです。現時点のご予定でかまいません。<br>※ ここでのご回答は交通手段のお申し込みではありません。実際には、ここで選んだものと違う交通手段をご利用いただいても問題ございません。<br>※ 交通手段のお申し込みは、合唱参加の当選が決まり、参加費をお支払いいただく際に、別途お手続きいただきます。</p>
 </div>
 <div class="q">2026年のONE VOICEとの関わり<span class="req">必須</span>
 <p class="note">当てはまるものを1つ選んでください。</p>
@@ -286,6 +312,13 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label><input type="radio" name="history2026" value="2026年も知っていたが、今回初めてエントリーする">2026年も知っていたが、今回初めてエントリーする</label>
 <label><input type="radio" name="history2026" value="今回初めて当イベントのことを知った">今回初めて当イベントのことを知った</label>
 </div>
+</div>
+<div class="q hidden" id="bubbleArea">DAY1ナイトバブルショーでの合唱コラボへの参加<span class="req">必須</span>
+<div class="radios">
+<label><input type="radio" name="day1Bubble" value="参加する">参加する</label>
+<label><input type="radio" name="day1Bubble" value="参加しない">参加しない</label>
+</div>
+<p class="note">2027年合唱の当選者のうち、2026年にも出演された方のみご参加いただけます。ナイトバブルショー最後の1曲「You Raise Me Up」を、ソリスト3名・バブルパフォーマンスとともに、ステージ前と客席を囲んで歌います。暗譜でも、楽譜を見ながらでもご参加いただけます（会場が暗いため、紙の楽譜はほとんど見えません）。「参加する」を選ぶと、DAY1の参加予定も「参加する予定」になります。</p>
 </div>
 <fieldset id="sourceArea" class="hidden" disabled>
 <div class="q">このプロジェクトを何で知りましたか？<span class="req">必須</span>
@@ -568,8 +601,45 @@ function updateSourceArea() {
   var on = needSource(), area = document.getElementById('sourceArea');
   area.disabled = !on; area.className = on ? '' : 'hidden';
 }
+// DAY1ナイトバブルの合唱コラボ：2026年に出演した方にだけ聞く
+function needBubble() {
+  return radioVal('history2026') === '2026年に参加した';
+}
+function updateBubbleArea() {
+  var on = needBubble(), area = document.getElementById('bubbleArea');
+  area.className = on ? 'q' : 'q hidden';
+  var rs = document.querySelectorAll('input[name="day1Bubble"]');
+  for (var i = 0; i < rs.length; i++) { rs[i].required = on; if (!on) rs[i].checked = false; }
+}
+// DAY1の交通手段（予定）：DAY1に「参加する予定」「未定」の方にだけ聞く
+function needTransportDay1() {
+  var v = radioVal('day1');
+  return v === '参加する' || v === '未定';
+}
+function updateTransportDay1Area() {
+  var on = needTransportDay1(), area = document.getElementById('transportDay1Area');
+  area.className = on ? 'q' : 'q hidden';
+  var rs = document.querySelectorAll('input[name="transportDay1"]');
+  for (var i = 0; i < rs.length; i++) { rs[i].required = on; if (!on) rs[i].checked = false; }
+}
+// 合唱コラボに参加する方は、DAY1の参加予定も「参加する予定」にそろえる
+var bubbleRadios = document.querySelectorAll('input[name="day1Bubble"]');
+for (var br = 0; br < bubbleRadios.length; br++) bubbleRadios[br].addEventListener('change', function () {
+  if (this.value === '参加する') {
+    document.querySelector('input[name="day1"][value="参加する"]').checked = true;
+    updateTransportDay1Area();
+  }
+});
+var day1Radios = document.querySelectorAll('input[name="day1"]');
+for (var dr = 0; dr < day1Radios.length; dr++) day1Radios[dr].addEventListener('change', function () {
+  if (this.value !== '参加する' && radioVal('day1Bubble') === '参加する') {
+    document.querySelector('input[name="day1Bubble"][value="参加しない"]').checked = true;
+  }
+  updateTransportDay1Area();
+});
 var historyRadios = document.querySelectorAll('input[name="history2026"]');
 for (var hr = 0; hr < historyRadios.length; hr++) historyRadios[hr].addEventListener('change', updateSourceArea);
+for (var hb = 0; hb < historyRadios.length; hb++) historyRadios[hb].addEventListener('change', updateBubbleArea);
 function sourceVals() {
   if (!needSource()) return [];
   var els = document.querySelectorAll('input[name="source"]:checked');
@@ -620,6 +690,9 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     rehearsal: radioVal('rehearsal'),
     day1: radioVal('day1'),
     history2026: radioVal('history2026'),
+    day1Bubble: needBubble() ? radioVal('day1Bubble') : '',
+    transportDay1: needTransportDay1() ? radioVal('transportDay1') : '',
+    transportDay2: radioVal('transportDay2'),
     source: sourceVals().join('、'),
     sourceOther: needSource() ? val('sourceOther') : '',
     childrenCount: childVals().length,
