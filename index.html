@@ -158,6 +158,10 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </select>
 
 </label>
+<label>琵琶湖博物館（会場付近）の利用希望<span class="req">必須</span>
+<select id="museum" required><option value="">選択してください</option><option value="はい">はい</option><option value="いいえ">いいえ</option></select>
+<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。お一人さま670円（税込）で、参加費とは別にお支払いが必要です。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。</p>
+</label>
 </fieldset>
 <fieldset id="childrenArea" class="hidden" disabled>
 <h3 class="sec">お子様（小中学生）の情報</h3>
@@ -202,12 +206,16 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label>Tシャツサイズ<span class="req">必須</span>
 <select class="cTshirt" required><option value="">選択してください</option><option value="130">130（低学年の目安）</option><option value="150">150（高学年の目安）</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select>
 </label>
+<label>琵琶湖博物館（会場付近）の利用希望<span class="req">必須</span>
+<select class="cMuseum" required><option value="">選択してください</option><option value="はい">はい</option><option value="いいえ">いいえ</option></select>
+<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。お一人さま670円（税込）で、参加費とは別にお支払いが必要です。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。</p>
+</label>
 <button type="button" class="subBtn cRemove">このお子様を削除</button>
 </div>
 </template>
 <div class="q" id="sizeArea">Tシャツサイズ表
 <img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
-<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。お申し込み後のサイズ変更はできませんので、サイズをよくご確認ください。</p>
+<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なお申し込み内容となります。お申し込み後のサイズ変更はできませんので、サイズをよくご確認ください。</p>
 </div>
 <h3 class="sec">サポートが必要な方</h3>
 <div class="q">このお申し込みの参加者の中に、当日サポートが必要な方はいますか<span class="req">必須</span>
@@ -236,11 +244,11 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </fieldset>
 <h3 class="sec">一緒に参加したい方</h3>
 <p class="note">別々にお申し込みのご家族・ご友人などで、一緒に参加したい方がいれば、5名までご記入ください（任意）。このお申し込みに含めたお子様は記入不要です。</p>
-<p class="note">お互いに当選された場合、同じパート・同じ立ち位置を選ばれていれば、できるだけ近くの席になるよう配慮いたします（お約束はできません）。パートや立ち位置が異なる場合は、近くのお席にはできません。当選・落選は、お一人ずつ決まります（サポートが必要な方とサポートする方を除く）。</p>
+<p class="note">お互いに当選された場合、同じパート・同じ立ち位置を選ばれていれば、できるだけ近く、お隣の席になるよう配慮いたします（お約束はできません）。パートや立ち位置が異なる場合は、近くのお席にはできません。当選・落選は、お一人ずつ決まります（サポートが必要な方とサポートする方を除く）。</p>
 <p class="note">お相手の方のお名前は、フルネームで正しくご記入ください。お名前が異なる場合は照合できません。お相手の方にも、あなたのお名前を書いていただくと確実です。</p>
 <div id="companionList">
 <div class="companion">
-<label>1人目のお名前<input type="text" class="pName"></label>
+<label>1人目のお名前（ご本人の場合も含む）<input type="text" class="pName"></label>
 <label>1人目のフリガナ<input type="text" class="pFurigana"></label>
 </div>
 <div class="companion">
@@ -266,16 +274,38 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label><input type="radio" name="rehearsal" value="4/10（土）のみ" required>4/10（土）のみ</label>
 <label><input type="radio" name="rehearsal" value="4/24（土）のみ">4/24（土）のみ</label>
 <label><input type="radio" name="rehearsal" value="両日とも">両日とも</label>
-<label><input type="radio" name="rehearsal" value="未定">未定</label>
 </div>
 <p class="note">合同練習（大津市民会館・13:00〜17:00（予定））は、全2回中、最低1回の参加が必須です。現時点の予定でかまいません。お子様と一緒にお申し込みの場合は、参加者全員の予定としてお答えください。</p>
 </div>
-<div class="q">DAY1（5/7）の参加<span class="req">必須</span>
+<div class="q">DAY1（5/7）公開リハーサルへの出演予定（ナイトバブルショーの観覧付き）<span class="req">必須</span>
 <div class="radios">
-<label><input type="radio" name="day1" value="参加する" required>参加する</label>
-<label><input type="radio" name="day1" value="参加しない">参加しない</label>
+<label><input type="radio" name="day1" value="参加する" required>参加する予定</label>
+<label><input type="radio" name="day1" value="参加しない">参加しない予定</label>
 </div>
-<p class="note">DAY1（公開リハーサル出演・ナイトバブル観覧）は自由参加です。合唱参加費に含まれるため、追加の参加費はかかりません（交通・駐車場・駐輪場等の利用料金は別途必要です）。</p>
+<p class="note">DAY1（公開リハーサル出演・ナイトバブル観覧）は自由参加です。現時点のご予定でかまいません。合唱参加費に含まれるため、追加の参加費はかかりません（交通・駐車場・駐輪場等の利用料金は別途必要です）。</p>
+</div>
+<div class="q hidden" id="transportDay1Area">DAY1（5/7）の会場までの交通手段（予定）<span class="req">必須</span>
+<div class="checks">
+<label><input type="radio" name="transportDay1" value="車（駐車場を利用）">車（駐車場を利用）</label>
+<label><input type="radio" name="transportDay1" value="シャトルバス（草津トヨタアリーナ発着）">シャトルバス（草津トヨタアリーナ発着）</label>
+<label><input type="radio" name="transportDay1" value="直通バス（京都駅発着）">直通バス（京都駅発着）</label>
+<label><input type="radio" name="transportDay1" value="直通バス（大阪駅発着）">直通バス（大阪駅発着）</label>
+<label><input type="radio" name="transportDay1" value="宿泊付きバスプラン（5/7・5/8の2泊）">宿泊付きバスプラン（5/7・5/8の2泊）</label>
+<label><input type="radio" name="transportDay1" value="その他（送迎・自転車・徒歩など）">その他（送迎・自転車・徒歩など）</label>
+</div>
+<p class="note">※ 運営の準備（駐車場の広さやバスの台数など）の目安としてお伺いするものです。現時点のご予定でかまいません。<br>※ ここでのご回答は交通手段のお申し込みではありません。実際には、ここで選んだものと違う交通手段をご利用いただいても問題ございません。<br>※ 交通手段のお申し込みは、合唱参加の当選が決まり、参加費をお支払いいただく際に、別途お手続きいただきます。</p>
+</div>
+<div class="q">DAY2（5/8）の会場までの交通手段（予定）<span class="req">必須</span>
+<div class="checks">
+<label><input type="radio" name="transportDay2" value="車（合唱参加者専用駐車場を利用）" required>車（合唱参加者専用駐車場を利用）</label>
+<label><input type="radio" name="transportDay2" value="シャトルバス（草津トヨタアリーナ発着）">シャトルバス（草津トヨタアリーナ発着）</label>
+<label><input type="radio" name="transportDay2" value="直通バス（京都駅発着）">直通バス（京都駅発着）</label>
+<label><input type="radio" name="transportDay2" value="直通バス（大阪駅発着）">直通バス（大阪駅発着）</label>
+<label><input type="radio" name="transportDay2" value="宿泊付きバスプラン（5/7・5/8の2泊）">宿泊付きバスプラン（5/7・5/8の2泊）</label>
+<label><input type="radio" name="transportDay2" value="宿泊付きバスプラン（5/8のみ1泊）">宿泊付きバスプラン（5/8のみ1泊）</label>
+<label><input type="radio" name="transportDay2" value="その他（送迎・自転車・徒歩など）">その他（送迎・自転車・徒歩など）</label>
+</div>
+<p class="note">※ 運営の準備（駐車場の広さやバスの台数など）の目安としてお伺いするものです。現時点のご予定でかまいません。<br>※ ここでのご回答は交通手段のお申し込みではありません。実際には、ここで選んだものと違う交通手段をご利用いただいても問題ございません。<br>※ 交通手段のお申し込みは、合唱参加の当選が決まり、参加費をお支払いいただく際に、別途お手続きいただきます。</p>
 </div>
 <div class="q">2026年のONE VOICEとの関わり<span class="req">必須</span>
 <p class="note">当てはまるものを1つ選んでください。</p>
@@ -286,6 +316,13 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label><input type="radio" name="history2026" value="2026年も知っていたが、今回初めてエントリーする">2026年も知っていたが、今回初めてエントリーする</label>
 <label><input type="radio" name="history2026" value="今回初めて当イベントのことを知った">今回初めて当イベントのことを知った</label>
 </div>
+</div>
+<div class="q hidden" id="bubbleArea">DAY1ナイトバブルショーでの合唱コラボへの参加<span class="req">必須</span>
+<div class="radios">
+<label><input type="radio" name="day1Bubble" value="参加する">参加する</label>
+<label><input type="radio" name="day1Bubble" value="参加しない">参加しない</label>
+</div>
+<p class="note">2027年合唱の当選者のうち、2026年にも出演された方のみご参加いただけます。ナイトバブルショー最後の1曲「You Raise Me Up」を、ソリスト3名・バブルパフォーマンスとともに、ステージ前と客席を囲んで歌います。暗譜でも、楽譜を見ながらでもご参加いただけます（会場が暗いため、紙の楽譜はほとんど見えません）。「参加する」を選ぶと、DAY1公開リハーサルへの出演予定も「参加する予定」になります。</p>
 </div>
 <fieldset id="sourceArea" class="hidden" disabled>
 <div class="q">このプロジェクトを何で知りましたか？<span class="req">必須</span>
@@ -322,6 +359,16 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <p>・小・中学生は、合同練習、DAY1、DAY2のすべてにおいて、保護者の付き添いが必要です。DAY1・DAY2で保護者の方が合唱に参加されない場合は、各日の観覧チケットを別途ご購入ください。保護者の方は合唱専用エリアには同席いただけませんが、できるだけお子様に近い観覧席をご案内できるよう配慮します。高校生は保護者同伴推奨です。</p>
 </div>
 <label class="agree"><input type="checkbox" id="termsAgree" required>上記の参加条件を確認しました</label>
+</div>
+<div class="q">より良いステージづくりのために<span class="req">必須</span>
+<div class="policy">
+<p>ONE VOICEは、合唱参加者・講師・運営スタッフが同じチームの一員として力を合わせ、会場に足を運んでくださる観客の皆様に、一つのステージをお届けするプロジェクトです。運営スタッフ一同、皆様と最高のステージを作り上げられるよう、準備から本番まで力を尽くしてまいります。皆様にも、次の点にご理解とご協力をお願いいたします。</p>
+<p>・お問い合わせの前に、紹介ページやFAQ、公式LINEでのご案内をご確認ください。1,000人規模のプロジェクトのため、個別のお問い合わせには、ご返答までにお時間をいただく場合や、お答えできない場合がございます。特に、紹介ページの「よくある質問」に掲載している内容については、ご返信を控えさせていただく場合がございます。<br>
+・講師・運営スタッフ・ほかの参加者に対して、敬意と思いやりをもって接していただきますよう、お願いいたします。威圧的・攻撃的な言動や、過度なご要望はお控えください。<br>
+・SNS等での、講師・スタッフ・参加者への誹謗中傷はお控えください。<br>
+・上記に反する言動があったと主催者が判断した場合は、今後のご参加をお断りすることがあります。</p>
+</div>
+<label class="agree"><input type="checkbox" id="conductAgree" required>上記を理解し、講師・運営スタッフとの良好な関係づくりに協力します</label>
 </div>
 <div class="q">写真・映像の使用について<span class="req">必須</span>
 <div class="policy">
@@ -548,7 +595,8 @@ function childVals() {
       position: c.querySelector('.cPosition').value,
       experienceYears: c.querySelector('.cExperienceYears').value,
       experience: c.querySelector('.cExperience').value,
-      tshirt: c.querySelector('.cTshirt').value
+      tshirt: c.querySelector('.cTshirt').value,
+      museum: c.querySelector('.cMuseum').value
     });
   }
   return list;
@@ -568,8 +616,44 @@ function updateSourceArea() {
   var on = needSource(), area = document.getElementById('sourceArea');
   area.disabled = !on; area.className = on ? '' : 'hidden';
 }
+// DAY1ナイトバブルの合唱コラボ：2026年に出演した方にだけ聞く
+function needBubble() {
+  return radioVal('history2026') === '2026年に参加した';
+}
+function updateBubbleArea() {
+  var on = needBubble(), area = document.getElementById('bubbleArea');
+  area.className = on ? 'q' : 'q hidden';
+  var rs = document.querySelectorAll('input[name="day1Bubble"]');
+  for (var i = 0; i < rs.length; i++) { rs[i].required = on; if (!on) rs[i].checked = false; }
+}
+// DAY1の交通手段（予定）：DAY1に「参加する予定」の方にだけ聞く
+function needTransportDay1() {
+  return radioVal('day1') === '参加する';
+}
+function updateTransportDay1Area() {
+  var on = needTransportDay1(), area = document.getElementById('transportDay1Area');
+  area.className = on ? 'q' : 'q hidden';
+  var rs = document.querySelectorAll('input[name="transportDay1"]');
+  for (var i = 0; i < rs.length; i++) { rs[i].required = on; if (!on) rs[i].checked = false; }
+}
+// 合唱コラボに参加する方は、DAY1の参加予定も「参加する予定」にそろえる
+var bubbleRadios = document.querySelectorAll('input[name="day1Bubble"]');
+for (var br = 0; br < bubbleRadios.length; br++) bubbleRadios[br].addEventListener('change', function () {
+  if (this.value === '参加する') {
+    document.querySelector('input[name="day1"][value="参加する"]').checked = true;
+    updateTransportDay1Area();
+  }
+});
+var day1Radios = document.querySelectorAll('input[name="day1"]');
+for (var dr = 0; dr < day1Radios.length; dr++) day1Radios[dr].addEventListener('change', function () {
+  if (this.value !== '参加する' && radioVal('day1Bubble') === '参加する') {
+    document.querySelector('input[name="day1Bubble"][value="参加しない"]').checked = true;
+  }
+  updateTransportDay1Area();
+});
 var historyRadios = document.querySelectorAll('input[name="history2026"]');
 for (var hr = 0; hr < historyRadios.length; hr++) historyRadios[hr].addEventListener('change', updateSourceArea);
+for (var hb = 0; hb < historyRadios.length; hb++) historyRadios[hb].addEventListener('change', updateBubbleArea);
 function sourceVals() {
   if (!needSource()) return [];
   var els = document.querySelectorAll('input[name="source"]:checked');
@@ -620,6 +704,10 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     rehearsal: radioVal('rehearsal'),
     day1: radioVal('day1'),
     history2026: radioVal('history2026'),
+    day1Bubble: needBubble() ? radioVal('day1Bubble') : '',
+    transportDay1: needTransportDay1() ? radioVal('transportDay1') : '',
+    transportDay2: radioVal('transportDay2'),
+    museum: sv('museum'),
     source: sourceVals().join('、'),
     sourceOther: needSource() ? val('sourceOther') : '',
     childrenCount: childVals().length,
@@ -634,6 +722,7 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     children: JSON.stringify(childVals()),
     note: val('note'),
     termsAgree: document.getElementById('termsAgree').checked ? '確認済み' : '',
+    conductAgree: document.getElementById('conductAgree').checked ? '協力する' : '',
     photoAgree: document.getElementById('photoAgree').checked ? '同意する' : '',
     privacyAgree: document.getElementById('privacyAgree').checked ? '同意する' : ''
   };
