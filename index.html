@@ -146,6 +146,10 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label>所属団体・学校名<input type="text" id="affiliation">
 <p class="note">合唱団に所属されている方は団体名を、学生の方は学校名をご記入ください。</p>
 </label>
+<label>琵琶湖博物館（会場付近）の利用希望<span class="req">必須</span>
+<select id="museum" required><option value="">選択してください</option><option value="はい">はい</option><option value="いいえ">いいえ</option></select>
+<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。入館料は団体割引料金でお一人さま670円（税込）、高校生以下は無料です（合唱参加費のお支払い時に別途お支払いが必要です）。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。</p>
+</label>
 <label>Tシャツサイズ<span class="req">必須</span>
 <select id="tshirt" required>
 <option value="">選択してください</option>
@@ -158,10 +162,10 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </select>
 
 </label>
-<label>琵琶湖博物館（会場付近）の利用希望<span class="req">必須</span>
-<select id="museum" required><option value="">選択してください</option><option value="はい">はい</option><option value="いいえ">いいえ</option></select>
-<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。お一人さま670円（税込）で、参加費とは別にお支払いが必要です。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。</p>
-</label>
+<div class="q sizeArea">Tシャツサイズ表
+<img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
+<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なお申し込み内容となります。お申し込み後のサイズ変更はできませんので、サイズをよくご確認ください。</p>
+</div>
 </fieldset>
 <fieldset id="childrenArea" class="hidden" disabled>
 <h3 class="sec">お子様（小中学生）の情報</h3>
@@ -203,20 +207,20 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <select class="cExperienceYears" required><option value="">選択してください</option><option value="1年未満">1年未満</option><option value="1〜3年">1〜3年</option><option value="3〜5年">3〜5年</option><option value="5〜10年">5〜10年</option><option value="10年以上">10年以上</option></select>
 </label>
 <label>これまでの合唱経験<span class="req">必須</span><textarea class="cExperience" required></textarea></label>
+<label>琵琶湖博物館（会場付近）の利用希望<span class="req">必須</span>
+<select class="cMuseum" required><option value="">選択してください</option><option value="はい">はい</option><option value="いいえ">いいえ</option></select>
+<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。入館料は団体割引料金でお一人さま670円（税込）、高校生以下は無料です（合唱参加費のお支払い時に別途お支払いが必要です）。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。</p>
+</label>
 <label>Tシャツサイズ<span class="req">必須</span>
 <select class="cTshirt" required><option value="">選択してください</option><option value="130">130（低学年の目安）</option><option value="150">150（高学年の目安）</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select>
 </label>
-<label>琵琶湖博物館（会場付近）の利用希望<span class="req">必須</span>
-<select class="cMuseum" required><option value="">選択してください</option><option value="はい">はい</option><option value="いいえ">いいえ</option></select>
-<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。お一人さま670円（税込）で、参加費とは別にお支払いが必要です。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。</p>
-</label>
-<button type="button" class="subBtn cRemove">このお子様を削除</button>
-</div>
-</template>
-<div class="q" id="sizeArea">Tシャツサイズ表
+<div class="q sizeArea">Tシャツサイズ表
 <img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
 <p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なお申し込み内容となります。お申し込み後のサイズ変更はできませんので、サイズをよくご確認ください。</p>
 </div>
+<button type="button" class="subBtn cRemove">このお子様を削除</button>
+</div>
+</template>
 <h3 class="sec">サポートが必要な方</h3>
 <div class="q">このお申し込みの参加者の中に、当日サポートが必要な方はいますか<span class="req">必須</span>
 <div class="radios">
@@ -243,7 +247,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <p class="note">フルネームで正しくご記入ください。お名前が異なる場合は照合できません。</p></label>
 </fieldset>
 <h3 class="sec">一緒に参加したい方</h3>
-<p class="note">別々にお申し込みのご家族・ご友人などで、一緒に参加したい方がいれば、5名までご記入ください（任意）。このお申し込みに含めたお子様は記入不要です。</p>
+<p class="note">別々にお申し込みのご家族・ご友人などで、一緒に参加したい方がいれば、5名までご記入ください（任意）。この応募フォームで一緒にお申し込みいただくお子様は、記入不要です。</p>
 <p class="note">お互いに当選された場合、同じパート・同じ立ち位置を選ばれていれば、できるだけ近く、お隣の席になるよう配慮いたします（お約束はできません）。パートや立ち位置が異なる場合は、近くのお席にはできません。当選・落選は、お一人ずつ決まります（サポートが必要な方とサポートする方を除く）。</p>
 <p class="note">お相手の方のお名前は、フルネームで正しくご記入ください。お名前が異なる場合は照合できません。お相手の方にも、あなたのお名前を書いていただくと確実です。</p>
 <div id="companionList">
@@ -317,12 +321,12 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label><input type="radio" name="history2026" value="今回初めて当イベントのことを知った">今回初めて当イベントのことを知った</label>
 </div>
 </div>
-<div class="q hidden" id="bubbleArea">DAY1ナイトバブルショーでの合唱コラボへの参加<span class="req">必須</span>
+<div class="q hidden" id="bubbleArea">DAY1ナイトバブルショーでの合唱コラボへの参加予定<span class="req">必須</span>
 <div class="radios">
-<label><input type="radio" name="day1Bubble" value="参加する">参加する</label>
-<label><input type="radio" name="day1Bubble" value="参加しない">参加しない</label>
+<label><input type="radio" name="day1Bubble" value="参加する">参加する予定</label>
+<label><input type="radio" name="day1Bubble" value="参加しない">参加しない予定</label>
 </div>
-<p class="note">2027年合唱の当選者のうち、2026年にも出演された方のみご参加いただけます。ナイトバブルショー最後の1曲「You Raise Me Up」を、ソリスト3名・バブルパフォーマンスとともに、ステージ前と客席を囲んで歌います。暗譜でも、楽譜を見ながらでもご参加いただけます（会場が暗いため、紙の楽譜はほとんど見えません）。「参加する」を選ぶと、DAY1公開リハーサルへの出演予定も「参加する予定」になります。</p>
+<p class="note">2027年合唱の当選者のうち、2026年にも出演された方のみご参加いただけます。ナイトバブルショー最後の1曲「You Raise Me Up」を、ソリスト3名・バブルパフォーマンスとともに、ステージ前と客席を囲んで歌います。暗譜でも、楽譜を見ながらでもご参加いただけます（会場が暗いため、紙の楽譜はほとんど見えません）。現時点のご予定でかまいません。「参加する予定」を選ぶと、DAY1公開リハーサルへの出演予定も「参加する予定」になります。</p>
 </div>
 <fieldset id="sourceArea" class="hidden" disabled>
 <div class="q">このプロジェクトを何で知りましたか？<span class="req">必須</span>
