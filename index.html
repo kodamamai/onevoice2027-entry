@@ -173,7 +173,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </fieldset>
 <fieldset id="childrenArea" class="hidden" disabled>
 <h3 class="sec">お子様（小中学生）の情報</h3>
-<p class="note">2027年度に小学1年生〜中学3年生のお子様（2011年4月2日〜2021年4月1日生まれ）が対象です。保護者の方ご自身と小中学生のお子様の分は、まとめて1回のお申し込み・1回のご決済で行えます。</p>
+<p class="note">2027年度に小学1年生〜中学3年生のお子様（2012年4月2日〜2021年4月1日生まれ）が対象です。保護者の方ご自身と小中学生のお子様の分は、まとめて1回のお申し込み・1回のご決済で行えます。</p>
 <p class="note">保護者の方とお子様が同じパート・同じ立ち位置を選ばれた場合は、隣のお席にご案内します。パートや立ち位置が異なる場合は、隣のお席にはなりません。</p>
 <p class="note hidden" id="kidsOnlyNote">小・中学生は、合同練習、DAY1、DAY2のすべてにおいて、保護者の付き添いが必要です。DAY1・DAY2で保護者の方が合唱に参加されない場合は、各日の観覧チケットを別途ご購入ください。</p>
 <div id="childList"></div>
@@ -194,8 +194,8 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label>性別<span class="req">必須</span>
 <select class="cGender" required><option value="">選択してください</option><option value="男性">男性</option><option value="女性">女性</option><option value="回答しない">回答しない</option></select>
 </label>
-<label>生年月日<span class="req">必須</span><input type="date" class="cBirthday" min="2011-04-02" max="2021-04-01" required>
-<p class="note">2027年度に小学1年生〜中学3年生のお子様が対象です（2011年4月2日〜2021年4月1日生まれ）。</p></label>
+<label>生年月日<span class="req">必須</span><input type="date" class="cBirthday" min="2012-04-02" max="2021-04-01" required>
+<p class="note">2027年度に小学1年生〜中学3年生のお子様が対象です（2012年4月2日〜2021年4月1日生まれ）。</p></label>
 <label>学校名<span class="req">必須</span><input type="text" class="cSchool" required></label>
 <label>第一希望パート<span class="req">必須</span>
 <select class="cPart1" required><option value="">選択してください</option><option value="1st Chorus">1st Chorus</option><option value="2nd Chorus">2nd Chorus</option><option value="3rd Chorus">3rd Chorus</option></select>
@@ -699,6 +699,14 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     alert('小学生以上の方が対象です（2021年4月1日以前に生まれた方）。小学生未満の方はご参加いただけません。');
     document.getElementById('birthday').scrollIntoView({ block: 'center' });
     return;
+  }
+  var cbs = document.querySelectorAll('.cBirthday');
+  for (var k = 0; k < cbs.length; k++) {
+    if (cbs[k].value && (cbs[k].value < '2012-04-02' || cbs[k].value > '2021-04-01')) {
+      alert('お子様は、2027年度に小学1年生〜中学3年生の方が対象です（2012年4月2日〜2021年4月1日生まれ）。');
+      cbs[k].scrollIntoView({ block: 'center' });
+      return;
+    }
   }
   if (needSource() && sourceVals().length === 0) {
     alert('「このプロジェクトを何で知りましたか？」を1つ以上選んでください');
