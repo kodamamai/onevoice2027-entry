@@ -158,6 +158,10 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </select>
 
 </label>
+<label>琵琶湖博物館（会場付近）の利用希望<span class="req">必須</span>
+<select id="museum" required><option value="">選択してください</option><option value="はい">はい</option><option value="いいえ">いいえ</option></select>
+<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。お一人さま670円（税込）で、参加費とは別にお支払いが必要です。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。</p>
+</label>
 </fieldset>
 <fieldset id="childrenArea" class="hidden" disabled>
 <h3 class="sec">お子様（小中学生）の情報</h3>
@@ -201,6 +205,10 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label>これまでの合唱経験<span class="req">必須</span><textarea class="cExperience" required></textarea></label>
 <label>Tシャツサイズ<span class="req">必須</span>
 <select class="cTshirt" required><option value="">選択してください</option><option value="130">130（低学年の目安）</option><option value="150">150（高学年の目安）</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select>
+</label>
+<label>琵琶湖博物館（会場付近）の利用希望<span class="req">必須</span>
+<select class="cMuseum" required><option value="">選択してください</option><option value="はい">はい</option><option value="いいえ">いいえ</option></select>
+<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。お一人さま670円（税込）で、参加費とは別にお支払いが必要です。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。</p>
 </label>
 <button type="button" class="subBtn cRemove">このお子様を削除</button>
 </div>
@@ -581,7 +589,8 @@ function childVals() {
       position: c.querySelector('.cPosition').value,
       experienceYears: c.querySelector('.cExperienceYears').value,
       experience: c.querySelector('.cExperience').value,
-      tshirt: c.querySelector('.cTshirt').value
+      tshirt: c.querySelector('.cTshirt').value,
+      museum: c.querySelector('.cMuseum').value
     });
   }
   return list;
@@ -693,6 +702,7 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     day1Bubble: needBubble() ? radioVal('day1Bubble') : '',
     transportDay1: needTransportDay1() ? radioVal('transportDay1') : '',
     transportDay2: radioVal('transportDay2'),
+    museum: sv('museum'),
     source: sourceVals().join('、'),
     sourceOther: needSource() ? val('sourceOther') : '',
     childrenCount: childVals().length,
