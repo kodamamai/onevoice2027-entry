@@ -130,6 +130,10 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <p class="note">どちらか1つをお選びください。各ブロックとも人数に限りがあるため、ご希望に添えない場合がございます。歌唱方向は当選通知の際にお知らせします。</p>
 <p class="note">花火をバックに歌うブロックは暗譜必須です。</p>
 </label>
+<label id="scoreArea" class="hidden">暗譜で歌うか、楽譜を見ながら歌うか<span class="req">必須</span>
+<select id="scoreStyle"><option value="">選択してください</option><option value="暗譜で歌う予定">暗譜で歌う予定</option><option value="楽譜を見ながら歌う予定">楽譜を見ながら歌う予定</option></select>
+<p class="note">花火を見ながら歌うブロックも、基本は暗譜でお願いしています。どうしても難しい場合は、楽譜（紙・スマホ・タブレット等）を見ながら歌っていただけますが、後列にご案内する場合があります。現時点のご予定でかまいません。</p>
+</label>
 <label>合唱経験年数<span class="req">必須</span>
 <select id="experienceYears" required>
 <option value="">選択してください</option>
@@ -202,6 +206,10 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label>立ち位置の希望<span class="req">必須</span>
 <select class="cPosition" required><option value="">選択してください</option><option value="花火をバックに歌う">花火をバックに歌う</option><option value="花火を見ながら歌う">花火を見ながら歌う</option></select>
 <p class="note">人数に限りがあるため、ご希望に添えない場合がございます。</p>
+</label>
+<label class="cScoreArea hidden">暗譜で歌うか、楽譜を見ながら歌うか<span class="req">必須</span>
+<select class="cScoreStyle"><option value="">選択してください</option><option value="暗譜で歌う予定">暗譜で歌う予定</option><option value="楽譜を見ながら歌う予定">楽譜を見ながら歌う予定</option></select>
+<p class="note">花火を見ながら歌うブロックも、基本は暗譜でお願いしています。どうしても難しい場合は、楽譜（紙・スマホ・タブレット等）を見ながら歌っていただけますが、後列にご案内する場合があります。現時点のご予定でかまいません。</p>
 </label>
 <label>合唱経験年数<span class="req">必須</span>
 <select class="cExperienceYears" required><option value="">選択してください</option><option value="1年未満">1年未満</option><option value="1〜3年">1〜3年</option><option value="3〜5年">3〜5年</option><option value="5〜10年">5〜10年</option><option value="10年以上">10年以上</option></select>
@@ -526,9 +534,23 @@ function renumberChildren() {
   }
   document.getElementById('addChildBtn').disabled = cards.length >= MAX_CHILDREN;
 }
+// 花火を見ながら歌う方にだけ、暗譜か楽譜かを聞く（必須）
+var SCORE_KEY = '花火を見ながら歌う方：暗譜・楽譜';
+function toggleScore(area, sel, position) {
+  var on = position === '花火を見ながら歌う';
+  area.className = on ? area.className.replace(/\s*hidden/g, '') : area.className.replace(/\s*hidden/g, '') + ' hidden';
+  sel.required = on;
+  if (!on) sel.value = '';
+}
+document.getElementById('position').addEventListener('change', function () {
+  toggleScore(document.getElementById('scoreArea'), document.getElementById('scoreStyle'), this.value);
+});
 function addChild() {
   if (document.querySelectorAll('#childList .child').length >= MAX_CHILDREN) return;
   var node = document.getElementById('childTpl').content.firstElementChild.cloneNode(true);
+  // 花火を見ながら歌う方にだけ、暗譜か楽譜かを聞く
+  var cPos = node.querySelector('.cPosition');
+  cPos.addEventListener('change', function () { toggleScore(node.querySelector('.cScoreArea'), node.querySelector('.cScoreStyle'), cPos.value); });
   node.querySelector('.cRemove').addEventListener('click', function () {
     node.parentNode.removeChild(node);
     renumberChildren();
@@ -597,6 +619,7 @@ function childVals() {
       part1: c.querySelector('.cPart1').value,
       part2: c.querySelector('.cPart2').value,
       position: c.querySelector('.cPosition').value,
+      '花火を見ながら歌う方：暗譜・楽譜': c.querySelector('.cPosition').value === '花火を見ながら歌う' ? c.querySelector('.cScoreStyle').value : '',
       experienceYears: c.querySelector('.cExperienceYears').value,
       experience: c.querySelector('.cExperience').value,
       tshirt: c.querySelector('.cTshirt').value,
@@ -701,6 +724,7 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     part1: sv('part1'),
     part2: sv('part2'),
     position: sv('position'),
+    '花火を見ながら歌う方：暗譜・楽譜': sv('position') === '花火を見ながら歌う' ? sv('scoreStyle') : '',
     experienceYears: sv('experienceYears'),
     experience: sv('experience'),
     affiliation: sv('affiliation'),
