@@ -414,6 +414,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 </div>
 <div id="closed" class="hidden"><p>応募の受付は終了しました。</p><p>たくさんのご応募、ありがとうございました。お問い合わせは、公式LINEまでご連絡ください。</p></div>
+<div id="notStarted" class="hidden"><p>応募の受付は2026年10月27日（火）から始まります。</p><p>開始まで、今しばらくお待ちください。</p></div>
 <div id="applied" class="hidden"><p>このLINEアカウントからは、すでにご応募いただいています。</p><p>ご応募は、LINEアカウント1つにつき1回までです。内容の変更やお問い合わせは、公式LINEまでご連絡ください。</p></div>
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <script>
@@ -431,8 +432,8 @@ function showError(msg) { setStatus('エラーが発生しました：' + msg); 
 function onStatus(status) {
   document.getElementById('loading').className = 'hidden';
   if (status.closed) {
-    // 応募の受付期間外
-    document.getElementById('closed').className = '';
+    // 応募の受付期間外（受付開始前は開始日を案内する）
+    document.getElementById(status.notStarted ? 'notStarted' : 'closed').className = '';
   } else if (status.alreadyApplied) {
     // 1つのLINEアカウントにつき応募は1回まで
     document.getElementById('applied').className = '';
@@ -473,7 +474,7 @@ function init() {
       return Promise.all([checkFriend(uid), fetch(API_URL + '?action=checkApplied&userId=' + uid).then(function (res) { return res.json(); })]);
     }).then(function (r) {
       if (!r) return;
-      onStatus({ isFriend: r[0], addFriendUrl: ADD_FRIEND_URL, alreadyApplied: r[1] && r[1].alreadyApplied, closed: r[1] && r[1].closed });
+      onStatus({ isFriend: r[0], addFriendUrl: ADD_FRIEND_URL, alreadyApplied: r[1] && r[1].alreadyApplied, closed: r[1] && r[1].closed, notStarted: r[1] && r[1].notStarted });
     }).catch(function (err) {
       // どの段階で止まったかを画面に出す（問い合わせ時の手がかり）
       showError('[' + step + '] ' + (err && err.message ? err.message : JSON.stringify(err)));
@@ -790,7 +791,7 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
       }
     } else if (result.closed) {
       document.getElementById('formArea').className = 'hidden';
-      document.getElementById('closed').className = '';
+      document.getElementById(result.notStarted ? 'notStarted' : 'closed').className = '';
     } else if (result.alreadyApplied) {
       document.getElementById('formArea').className = 'hidden';
       document.getElementById('applied').className = '';
