@@ -51,15 +51,15 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <div id="formArea" class="hidden">
 <form id="appForm">
-<div class="q">どなたの分を申し込みますか<span class="req">必須</span>
+<div class="q">どなたの分をエントリーしますか<span class="req">必須</span>
 <div class="radios">
 <label><input type="radio" name="applyType" value="自分だけ" required>自分だけ</label>
 <label><input type="radio" name="applyType" value="自分と小中学生の子ども">自分と、小中学生の子ども</label>
 <label><input type="radio" name="applyType" value="小中学生の子どもだけ">小中学生の子どもだけ（自分は参加しない）</label>
 </div>
-<p class="note">まとめてお申し込みいただけるのは、ご自身と小中学生のお子様だけです（お子様は5名まで）。高校生以上の方（ご家族・ご友人を含む）は、それぞれご本人のLINEアカウントからお申し込みください。</p>
+<p class="note">まとめてエントリーできるのは、ご自身と小中学生のお子様だけです（お子様は5名まで）。高校生以上の方（ご家族・ご友人を含む）は、それぞれご本人のLINEアカウントからエントリーしてください。</p>
 </div>
-<h3 class="sec">申込者（このLINEアカウントの方）の情報</h3>
+<h3 class="sec">エントリーする方（このLINEアカウントの方）の情報</h3>
 <div class="nameRow">
 <label>姓<span class="req">必須</span><input type="text" id="lastName" placeholder="例：滋賀" required></label>
 <label>名<span class="req">必須</span><input type="text" id="firstName" placeholder="例：花子" required></label>
@@ -102,7 +102,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <p class="note">生年月日を入力すると自動で入ります。</p>
 </label>
 <label id="guardianArea" class="hidden">保護者の氏名<span class="req">18歳未満の方は必須</span><input type="text" id="guardianName">
-<p class="note">18歳未満の方は、保護者の方の同意が必要です。保護者の方の同意を得たうえでお申し込みいただき、保護者の方の氏名をご記入ください。ご記入をもって、保護者の方が本プロジェクトへの応募・参加に同意したものとみなします。</p>
+<p class="note">18歳未満の方は、保護者の方の同意が必要です。保護者の方の同意を得たうえでエントリーし、保護者の方の氏名をご記入ください。ご記入をもって、保護者の方が本プロジェクトへの応募・参加に同意したものとみなします。</p>
 </label>
 <label>第一希望パート<span class="req">必須</span>
 <select id="part1" required>
@@ -168,12 +168,12 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </label>
 <div class="q sizeArea">Tシャツサイズ表
 <img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
-<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なお申し込み内容となります。お申し込み後のサイズ変更はできませんので、サイズをよくご確認ください。</p>
+<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なお申し込み内容となります。エントリー後のサイズ変更はできませんので、サイズをよくご確認ください。</p>
 </div>
 </fieldset>
 <fieldset id="childrenArea" class="hidden" disabled>
 <h3 class="sec">お子様（小中学生）の情報</h3>
-<p class="note">2027年度に小学1年生〜中学3年生のお子様（2011年4月2日〜2021年4月1日生まれ）が対象です。保護者の方ご自身と小中学生のお子様の分は、まとめて1回のお申し込み・1回のご決済で行えます。</p>
+<p class="note">2027年度に小学1年生〜中学3年生のお子様（2012年4月2日〜2021年4月1日生まれ）が対象です。保護者の方ご自身と小中学生のお子様の分は、まとめて1回のエントリー・1回のご決済で行えます。</p>
 <p class="note">保護者の方とお子様が同じパート・同じ立ち位置を選ばれた場合は、隣のお席にご案内します。パートや立ち位置が異なる場合は、隣のお席にはなりません。</p>
 <p class="note hidden" id="kidsOnlyNote">小・中学生は、合同練習、DAY1、DAY2のすべてにおいて、保護者の付き添いが必要です。DAY1・DAY2で保護者の方が合唱に参加されない場合は、各日の観覧チケットを別途ご購入ください。</p>
 <div id="childList"></div>
@@ -184,7 +184,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <div class="child">
 <h4>お子様<span class="childNo"></span></h4>
 <label>続柄<span class="req">必須</span>
-<select class="cRelation" required><option value="">選択してください</option><option value="親">申込者はお子様の親</option><option value="祖父母">申込者はお子様の祖父母</option><option value="その他の保護者">申込者はお子様のその他の保護者</option></select>
+<select class="cRelation" required><option value="">選択してください</option><option value="親">エントリーする方はお子様の親</option><option value="祖父母">エントリーする方はお子様の祖父母</option><option value="その他の保護者">エントリーする方はお子様のその他の保護者</option></select>
 </label>
 <div class="nameRow">
 <label>姓<span class="req">必須</span><input type="text" class="cLastName" required></label>
@@ -194,8 +194,8 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label>性別<span class="req">必須</span>
 <select class="cGender" required><option value="">選択してください</option><option value="男性">男性</option><option value="女性">女性</option><option value="回答しない">回答しない</option></select>
 </label>
-<label>生年月日<span class="req">必須</span><input type="date" class="cBirthday" min="2011-04-02" max="2021-04-01" required>
-<p class="note">2027年度に小学1年生〜中学3年生のお子様が対象です（2011年4月2日〜2021年4月1日生まれ）。</p></label>
+<label>生年月日<span class="req">必須</span><input type="date" class="cBirthday" min="2012-04-02" max="2021-04-01" required>
+<p class="note">2027年度に小学1年生〜中学3年生のお子様が対象です（2012年4月2日〜2021年4月1日生まれ）。</p></label>
 <label>学校名<span class="req">必須</span><input type="text" class="cSchool" required></label>
 <label>第一希望パート<span class="req">必須</span>
 <select class="cPart1" required><option value="">選択してください</option><option value="1st Chorus">1st Chorus</option><option value="2nd Chorus">2nd Chorus</option><option value="3rd Chorus">3rd Chorus</option></select>
@@ -224,13 +224,13 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </label>
 <div class="q sizeArea">Tシャツサイズ表
 <img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
-<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なお申し込み内容となります。お申し込み後のサイズ変更はできませんので、サイズをよくご確認ください。</p>
+<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なお申し込み内容となります。エントリー後のサイズ変更はできませんので、サイズをよくご確認ください。</p>
 </div>
 <button type="button" class="subBtn cRemove">このお子様を削除</button>
 </div>
 </template>
 <h3 class="sec">サポートが必要な方</h3>
-<div class="q">このお申し込みの参加者の中に、当日サポートが必要な方はいますか<span class="req">必須</span>
+<div class="q">このエントリーの参加者の中に、当日サポートが必要な方はいますか<span class="req">必須</span>
 <div class="radios">
 <label><input type="radio" name="supportNeeded" value="いない" required checked>いない</label>
 <label><input type="radio" name="supportNeeded" value="いる">いる</label>
@@ -240,22 +240,22 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <fieldset id="supportArea" class="hidden" disabled>
 <p class="note">サポートが必要な方とサポートする方は、隣のお席にご案内します。そのため、サポートする方は、原則として合唱に参加される方に限ります。お二人とも、同じパート・同じ立ち位置をお選びください。当選・落選は、お二人一緒に決まります。合唱に参加しない介助者が必要な場合は、公式LINEより事前にご相談ください。介助者は原則として1名までとし、観覧チケットを別途ご購入いただきます（ご家族・お知り合い向けの先行販売をご利用いただけます）。必要な介助のため合唱専用エリアへ入っていただくことはできます。</p>
 <label>サポートが必要な方のお名前<span class="req">必須</span><input type="text" id="supportPerson" required>
-<p class="note">このお申し込みに含まれる方（申込者ご本人またはお子様）のお名前をご記入ください。</p></label>
+<p class="note">このエントリーに含まれる方（エントリーする方ご本人またはお子様）のお名前をご記入ください。</p></label>
 <label>必要なサポートの内容<span class="req">必須</span><textarea id="supportDetail" required></textarea>
 <p class="note">例：車椅子を使用、歩行の補助が必要、視覚・聴覚のサポートが必要 など</p></label>
 <div class="q">サポートする方<span class="req">必須</span>
 <div class="radios">
-<label><input type="radio" name="supporterType" value="このお申し込みに含まれる方" required>このお申し込みに含まれる方</label>
-<label><input type="radio" name="supporterType" value="別にお申し込みの方">別にお申し込みの方</label>
+<label><input type="radio" name="supporterType" value="このエントリーに含まれる方" required>このエントリーに含まれる方</label>
+<label><input type="radio" name="supporterType" value="別にエントリーの方">別にエントリーの方</label>
 </div>
-<p class="note">別にお申し込みの方の場合は、その方のお申し込みでも、この欄にサポートが必要な方のお名前をご記入いただくようお伝えください。</p>
+<p class="note">別にエントリーの方の場合は、その方のエントリーでも、この欄にサポートが必要な方のお名前をご記入いただくようお伝えください。</p>
 </div>
 <label>サポートする方のお名前<span class="req">必須</span><input type="text" id="supporterName" required></label>
 <label>サポートする方のフリガナ<span class="req">必須</span><input type="text" id="supporterFurigana" required>
 <p class="note">フルネームで正しくご記入ください。お名前が異なる場合は照合できません。</p></label>
 </fieldset>
 <h3 class="sec">一緒に参加したい方</h3>
-<p class="note">別々にお申し込みのご家族・ご友人などで、一緒に参加したい方がいれば、5名までご記入ください（任意）。この応募フォームで一緒にお申し込みいただくお子様は、記入不要です。</p>
+<p class="note">別々にエントリーのご家族・ご友人などで、一緒に参加したい方がいれば、5名までご記入ください（任意）。この応募フォームで一緒にエントリーするお子様は、記入不要です。</p>
 <p class="note">お互いに当選された場合、同じパート・同じ立ち位置を選ばれていれば、できるだけ近く、お隣の席になるよう配慮いたします（お約束はできません）。パートや立ち位置が異なる場合は、近くのお席にはできません。当選・落選は、お一人ずつ決まります（サポートが必要な方とサポートする方を除く）。</p>
 <p class="note">お相手の方のお名前は、フルネームで正しくご記入ください。お名前が異なる場合は照合できません。お相手の方にも、あなたのお名前を書いていただくと確実です。</p>
 <div id="companionList">
@@ -287,7 +287,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label><input type="radio" name="rehearsal" value="4/24（土）のみ">4/24（土）のみ</label>
 <label><input type="radio" name="rehearsal" value="両日とも">両日とも</label>
 </div>
-<p class="note">合同練習（大津市民会館・13:00〜17:00（予定））は、全2回中、最低1回の参加が必須です。現時点の予定でかまいません。お子様と一緒にお申し込みの場合は、参加者全員の予定としてお答えください。</p>
+<p class="note">合同練習（大津市民会館・13:00〜17:00（予定））は、全2回中、最低1回の参加が必須です。現時点の予定でかまいません。お子様と一緒にエントリーの場合は、参加者全員の予定としてお答えください。</p>
 </div>
 <div class="q">DAY1（5/7）公開リハーサルへの出演予定（ナイトバブルショーの観覧付き）<span class="req">必須</span>
 <div class="radios">
@@ -367,7 +367,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <p>・参加費は、当選通知後にご案内する専用ページより、ご自身で決済手続きをお願いします（自動決済ではございません）。お支払い期限は、当選発表後から2026年11月26日（木）までです。期限までに決済が確認できない場合は、当選が自動的に取り消されます。期限後の決済には対応できませんので、あらかじめご了承ください。</p>
 <p>・合唱参加費について、表示の金額以外に追加でご負担いただく費用はございません。ただし、会場までの交通費、駐車場・駐輪場等の利用料金は別途必要です。</p>
 <p>・DAY2自体が中止となった場合は参加費を全額返金いたします。合同練習やDAY1のみの中止、内容変更の場合の返金はございません。振替日の設定はございません。</p>
-<p>・お申し込みは個人単位です。代表者によるまとめてのお申し込みは基本不可です。ただし、小中学生は保護者の方による代理でのお申し込みが可能で、保護者の方ご自身と小中学生のお子様（5名まで）の分は、まとめて1回のお申し込み・1回のご決済で行えます。高校生以上の方（ご家族・ご友人を含む）は、それぞれご本人のLINEアカウントからお申し込みください。</p>
+<p>・エントリーは個人単位です。代表者によるまとめてのエントリーは基本不可です。ただし、小中学生は保護者の方による代理でのエントリーが可能で、保護者の方ご自身と小中学生のお子様（5名まで）の分は、まとめて1回のエントリー・1回のご決済で行えます。高校生以上の方（ご家族・ご友人を含む）は、それぞれご本人のLINEアカウントからエントリーしてください。</p>
 <p>・小・中学生は、合同練習、DAY1、DAY2のすべてにおいて、保護者の付き添いが必要です。DAY1・DAY2で保護者の方が合唱に参加されない場合は、各日の観覧チケットを別途ご購入ください。保護者の方は合唱専用エリアには同席いただけませんが、できるだけお子様に近い観覧席をご案内できるよう配慮します。高校生は保護者同伴推奨です。</p>
 </div>
 <label class="agree"><input type="checkbox" id="termsAgree" required>上記の参加条件を確認しました</label>
@@ -699,6 +699,14 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     alert('小学生以上の方が対象です（2021年4月1日以前に生まれた方）。小学生未満の方はご参加いただけません。');
     document.getElementById('birthday').scrollIntoView({ block: 'center' });
     return;
+  }
+  var cbs = document.querySelectorAll('.cBirthday');
+  for (var k = 0; k < cbs.length; k++) {
+    if (cbs[k].value && (cbs[k].value < '2012-04-02' || cbs[k].value > '2021-04-01')) {
+      alert('お子様は、2027年度に小学1年生〜中学3年生の方が対象です（2012年4月2日〜2021年4月1日生まれ）。');
+      cbs[k].scrollIntoView({ block: 'center' });
+      return;
+    }
   }
   if (needSource() && sourceVals().length === 0) {
     alert('「このプロジェクトを何で知りましたか？」を1つ以上選んでください');
