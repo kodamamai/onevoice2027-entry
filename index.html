@@ -411,10 +411,13 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <p id="doneThanks">このたびはご応募いただき、誠にありがとうございます。</p>
 <p id="announceNote">当選発表は<strong>2026年11月20日（金）</strong>を予定しております。<br>結果のご連絡まで、今しばらくお待ちください。</p>
 <div id="buyerNos" class="hidden">
-<h3 class="sec">購入者番号</h3>
+<h3 class="sec" id="buyerTitle">購入者番号</h3>
 <div id="buyerList"></div>
-<p id="sameNoNote" class="important hidden">購入者番号は、最初にご応募いただいたときと全く同じ番号です。内容を変更しても、番号は変わりません。</p>
-<p id="newNoNote" class="important hidden">※「新しい番号」と書いてある方は、今回の変更で追加された方のため、新しく発行した番号です。</p>
+<div id="newBuyerArea" class="hidden">
+<h3 class="sec">今回追加したお子様の購入者番号</h3>
+<div id="newBuyerList"></div>
+</div>
+<p id="sameNoNote" class="important hidden">内容を変更しても、番号は変わりません。</p>
 <p class="important">【重要】購入者番号は、当選後の参加費のお支払いや、ご家族・お知り合い向け観覧チケットの先行購入の際に必要です。この画面のスクリーンショットを撮るなどして、必ずお控えください。</p>
 </div>
 </div>
@@ -886,18 +889,20 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
       var buyers = result.buyers || [];
       if (buyers.length) {
         var list = document.getElementById('buyerList');
-        // 変更のとき：今回新しく発行した番号には「新しい番号」と書く（それ以外は最初の応募と同じ番号）
+        // 変更のとき：最初の応募と同じ番号と、今回追加したお子様の番号を分けて並べる
         var newNos = (result.newBuyerNos || []).map(String);
+        var newList = document.getElementById('newBuyerList');
         buyers.forEach(function (b) {
           var p = document.createElement('p');
           p.className = 'buyerNo';
+          p.textContent = (b.name ? b.name + '：' : '') + b.buyerNo;
           var isNew = result.updated && newNos.indexOf(String(b.buyerNo)) >= 0;
-          p.textContent = (b.name ? b.name + '：' : '') + b.buyerNo + (isNew ? '（新しい番号）' : '');
-          list.appendChild(p);
+          (isNew ? newList : list).appendChild(p);
         });
         if (result.updated) {
+          document.getElementById('buyerTitle').textContent = '購入者番号（最初のご応募と同じ番号です）';
+          if (newList.children.length) document.getElementById('newBuyerArea').className = '';
           document.getElementById('sameNoNote').className = 'important';
-          if (newNos.length) document.getElementById('newNoNote').className = 'important';
         }
         document.getElementById('buyerNos').className = '';
       }
