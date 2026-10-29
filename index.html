@@ -41,6 +41,9 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 .buyerNo{margin:8px 0 0;padding:8px 10px;border:1px solid #ddd;border-radius:4px;background:#fff;font-size:16px;font-weight:bold;}
 .editBanner{margin:0 0 12px;padding:10px 12px;border:2px solid #06c755;border-radius:4px;background:#f0fbf4;font-size:14px;line-height:1.6;}
 .editBanner p{margin:0;}
+.formErrors{margin:12px 0;padding:10px 12px;border:2px solid #d00;border-radius:4px;background:#fff1f1;color:#b00;font-size:15px;line-height:1.6;}
+.formErrors ul{margin:6px 0 0;padding-left:1.2em;}
+.invalid{outline:2px solid #d00;outline-offset:2px;}
 
 </style>
 </head>
@@ -52,7 +55,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <a id="addFriendLink" href="#">友だち追加はこちら</a>
 </div>
 <div id="formArea" class="hidden">
-<form id="appForm">
+<form id="appForm" novalidate>
 <div id="editBanner" class="editBanner hidden"><p><strong>ご応募いただいた内容です。</strong></p><p>2026年11月16日（月）23:59まで、内容を変更できます。変更する場合は、内容を直して、いちばん下の「変更を保存する」を押してください。</p></div>
 <div class="q">どなたの分をエントリーしますか<span class="req">必須</span>
 <div class="radios">
@@ -402,6 +405,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <label class="agree"><input type="checkbox" id="privacyAgree" required>個人情報の取り扱いに同意します</label>
 </div>
+<div id="formErrors" class="formErrors hidden"></div>
 <button type="submit" id="submitBtn">送信する</button>
 <p class="note">ご応募は、LINEアカウント1つにつき1回までです。送信後も、2026年11月16日（月）23:59までは、このフォームを開き直すと内容の確認・変更ができます。</p>
 </form>
@@ -788,8 +792,63 @@ function sourceVals() {
   return vals;
 }
 
+// 入力・選択されていない項目を、送信ボタンの上に一覧で出す（LINEの画面では、ブラウザの標準の案内が出ないことがあるため）
+function textOnly(el) {
+  var t = '';
+  for (var i = 0; i < el.childNodes.length; i++) if (el.childNodes[i].nodeType === 3) t += el.childNodes[i].nodeValue;
+  return t.replace(/\s+/g, ' ').trim();
+}
+function fieldLabel(el) {
+  var t = '';
+  if (el.type === 'radio' || el.type === 'checkbox') {
+    var q = el.closest('.q');
+    t = q ? textOnly(q) : '';
+    if (!t) { var lab = el.closest('label'); t = lab ? lab.textContent.trim() : ''; }
+  } else {
+    var lab2 = el.closest('label');
+    t = lab2 ? textOnly(lab2) : '';
+    if (!t) { var q2 = el.closest('.q'); t = q2 ? textOnly(q2) : ''; }
+  }
+  var child = el.closest('.child');
+  if (child) {
+    var no = child.querySelector('.childNo');
+    t = 'お子様' + (no ? no.textContent : '') + '：' + t;
+  }
+  return t || '入力欄';
+}
+function checkRequired(form) {
+  var box = document.getElementById('formErrors');
+  var olds = form.querySelectorAll('.invalid');
+  for (var i = 0; i < olds.length; i++) olds[i].classList.remove('invalid');
+  var bad = [], seen = {}, first = null;
+  for (var j = 0; j < form.elements.length; j++) {
+    var el = form.elements[j];
+    if (!el.willValidate || el.checkValidity() || el.closest('.hidden')) continue;
+    var key = el.type === 'radio' ? 'r:' + el.name : 'e:' + j;
+    if (seen[key]) continue;
+    seen[key] = true;
+    var mark = (el.type === 'radio' || el.type === 'checkbox') ? (el.closest('.q') || el.closest('label') || el) : el;
+    mark.classList.add('invalid');
+    if (!first) first = mark;
+    bad.push(fieldLabel(el));
+  }
+  if (!bad.length) { box.className = 'formErrors hidden'; box.innerHTML = ''; return true; }
+  box.innerHTML = '';
+  var p = document.createElement('p');
+  p.style.margin = '0';
+  p.style.fontWeight = 'bold';
+  p.textContent = '入力・選択されていない項目があります。赤い枠の項目をご確認ください。';
+  var ul = document.createElement('ul');
+  bad.forEach(function (b) { var li = document.createElement('li'); li.textContent = b; ul.appendChild(li); });
+  box.appendChild(p); box.appendChild(ul);
+  box.className = 'formErrors';
+  first.scrollIntoView({ block: 'center' });
+  return false;
+}
+
 document.getElementById('appForm').addEventListener('submit', function (e) {
   e.preventDefault();
+  if (!checkRequired(this)) return;
   if (hasSelf() && val('birthday') > '2021-04-01') {
     alert('小学生以上の方が対象です（2021年4月1日以前に生まれた方）。小学生未満の方はご参加いただけません。');
     document.getElementById('birthday').scrollIntoView({ block: 'center' });
