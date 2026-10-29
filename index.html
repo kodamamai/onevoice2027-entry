@@ -39,6 +39,8 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 #done p{line-height:1.7;}
 .important{margin:12px 0 0;padding:10px 12px;border:2px solid #d00;border-radius:4px;background:#fff1f1;color:#b00;font-size:15px;font-weight:bold;line-height:1.6;}
 .buyerNo{margin:8px 0 0;padding:8px 10px;border:1px solid #ddd;border-radius:4px;background:#fff;font-size:16px;font-weight:bold;}
+.editBanner{margin:0 0 12px;padding:10px 12px;border:2px solid #06c755;border-radius:4px;background:#f0fbf4;font-size:14px;line-height:1.6;}
+.editBanner p{margin:0;}
 
 </style>
 </head>
@@ -51,6 +53,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <div id="formArea" class="hidden">
 <form id="appForm">
+<div id="editBanner" class="editBanner hidden"><p><strong>ご応募いただいた内容です。</strong></p><p>2026年11月16日（月）23:59まで、内容を変更できます。変更する場合は、内容を直して、いちばん下の「変更を保存する」を押してください。</p></div>
 <div class="q">どなたの分をエントリーしますか<span class="req">必須</span>
 <div class="radios">
 <label><input type="radio" name="applyType" value="自分だけ" required>自分だけ</label>
@@ -168,7 +171,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </label>
 <div class="q sizeArea">Tシャツサイズ表
 <img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
-<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なエントリー内容となります。エントリー後のサイズ変更はできませんので、サイズをよくご確認ください。</p>
+<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なエントリー内容となります。サイズの変更は、2026年11月16日（月）23:59までできます。それ以降は変更できませんので、サイズをよくご確認ください。</p>
 </div>
 </fieldset>
 <fieldset id="childrenArea" class="hidden" disabled>
@@ -224,7 +227,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </label>
 <div class="q sizeArea">Tシャツサイズ表
 <img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
-<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なエントリー内容となります。エントリー後のサイズ変更はできませんので、サイズをよくご確認ください。</p>
+<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なエントリー内容となります。サイズの変更は、2026年11月16日（月）23:59までできます。それ以降は変更できませんので、サイズをよくご確認ください。</p>
 </div>
 <button type="button" class="subBtn cRemove">このお子様を削除</button>
 </div>
@@ -400,12 +403,12 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label class="agree"><input type="checkbox" id="privacyAgree" required>個人情報の取り扱いに同意します</label>
 </div>
 <button type="submit" id="submitBtn">送信する</button>
-<p class="note">ご応募は、LINEアカウント1つにつき1回までです。送信後の内容の変更は、公式LINEまでお問い合わせください。</p>
+<p class="note">ご応募は、LINEアカウント1つにつき1回までです。送信後も、2026年11月16日（月）23:59までは、このフォームを開き直すと内容の確認・変更ができます。</p>
 </form>
 </div>
 <div id="done" class="hidden">
-<p class="doneTitle">ご応募を受け付けました</p>
-<p>このたびはご応募いただき、誠にありがとうございます。</p>
+<p class="doneTitle" id="doneTitle">ご応募を受け付けました</p>
+<p id="doneThanks">このたびはご応募いただき、誠にありがとうございます。</p>
 <p id="announceNote">当選発表は<strong>2026年11月20日（金）</strong>を予定しております。<br>結果のご連絡まで、今しばらくお待ちください。</p>
 <div id="buyerNos" class="hidden">
 <h3 class="sec">購入者番号</h3>
@@ -424,6 +427,9 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbw3Uyao6sB70pf8ypkqD1sdYe
 var FRIEND_CHECK_URL = 'https://script.google.com/macros/s/AKfycbxOk-STkS8VQnpudWMjzlWDXWMCrUKT0p0lcp9C-dSA3T_crt_oNvv79g_RLuxI8y10tw/exec';
 var ADD_FRIEND_URL = 'https://line.me/R/ti/p/@581ittwv';
 var profile = null;
+var idToken = null;
+// 応募済みの方が内容を変更しているとき true
+var editMode = false;
 
 function setStatus(msg) { document.getElementById('loading').innerText = msg; }
 function showError(msg) { setStatus('エラーが発生しました：' + msg); }
@@ -434,8 +440,8 @@ function onStatus(status) {
     // 応募の受付期間外
     document.getElementById('closed').className = '';
   } else if (status.alreadyApplied) {
-    // 1つのLINEアカウントにつき応募は1回まで
-    document.getElementById('applied').className = '';
+    // 1つのLINEアカウントにつき応募は1回まで。1次募集の締切までは、応募内容を出して変更できるようにする
+    loadMyEntry();
   } else if (status.isFriend) {
     document.getElementById('formArea').className = '';
   } else {
@@ -468,6 +474,8 @@ function init() {
     }).then(function (p) {
       if (!p) return;
       profile = p;
+      // 本人確認用（応募内容を見返す・変更するときに、保存側でLINEに確かめる）
+      try { idToken = liff.getIDToken(); } catch (e) { idToken = null; }
       var uid = encodeURIComponent(profile.userId);
       step = 'check';
       return Promise.all([checkFriend(uid), fetch(API_URL + '?action=checkApplied&userId=' + uid).then(function (res) { return res.json(); })]);
@@ -481,6 +489,85 @@ function init() {
   } catch (e) {
     showError(e && e.message ? e.message : String(e));
   }
+}
+
+// 応募済みの方：保存側から応募内容をもらい、フォームに入れて「変更」の画面にする
+function loadMyEntry() {
+  var loading = document.getElementById('loading');
+  loading.className = '';
+  setStatus('ご応募内容を読み込んでいます...');
+  fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ action: 'getMyEntry', idToken: idToken, lineUserId: profile.userId })
+  }).then(function (res) { return res.json(); }).then(function (r) {
+    loading.className = 'hidden';
+    if (r.found && r.entry) {
+      fillForm(r.entry);
+      editMode = true;
+      document.getElementById('editBanner').className = 'editBanner';
+      document.getElementById('submitBtn').textContent = '変更を保存する';
+      document.getElementById('formArea').className = '';
+    } else if (r.closed) {
+      document.getElementById('closed').className = '';
+    } else {
+      document.getElementById('applied').className = '';
+    }
+  }).catch(function () {
+    loading.className = 'hidden';
+    document.getElementById('applied').className = '';
+  });
+}
+
+function setVal(id, v) { var el = document.getElementById(id); if (el) el.value = v || ''; }
+function setRadio(name, v) {
+  var rs = document.querySelectorAll('input[name="' + name + '"]');
+  for (var i = 0; i < rs.length; i++) rs[i].checked = (rs[i].value === v);
+}
+function fillChild(node, c) {
+  function set(cls, v) { node.querySelector(cls).value = v || ''; }
+  set('.cRelation', c.relation); set('.cLastName', c.lastName); set('.cFirstName', c.firstName);
+  set('.cFurigana', c.furigana); set('.cGender', c.gender); set('.cBirthday', c.birthday);
+  set('.cSchool', c.school); set('.cPart1', c.part1); set('.cPart2', c.part2); set('.cPosition', c.position);
+  toggleScore(node.querySelector('.cScoreArea'), node.querySelector('.cScoreStyle'), c.position);
+  set('.cScoreStyle', c[SCORE_KEY]);
+  set('.cExperienceYears', c.experienceYears); set('.cExperience', c.experience);
+  set('.cMuseum', c.museum); set('.cTshirt', c.tshirt);
+  node.dataset.buyerNo = c.buyerNo || '';
+}
+function fillForm(e) {
+  setRadio('applyType', e.applyType);
+  document.getElementById('childList').innerHTML = '';
+  (e.children || []).forEach(function (c) { fillChild(addChild(), c); });
+  updateApplyType();
+  ['lastName', 'firstName', 'furigana', 'zipcode', 'pref', 'city', 'address', 'phone', 'email',
+    'gender', 'birthday', 'age', 'guardianName', 'part1', 'part2', 'position', 'experienceYears', 'experience',
+    'affiliation', 'museum', 'tshirt', 'supportPerson', 'supportDetail', 'supporterName', 'supporterFurigana',
+    'note', 'sourceOther'].forEach(function (id) { setVal(id, e[id]); });
+  updateGuardian();
+  toggleScore(document.getElementById('scoreArea'), document.getElementById('scoreStyle'), e.position);
+  setVal('scoreStyle', e[SCORE_KEY]);
+  ['supportNeeded', 'supporterType', 'rehearsal', 'day1', 'transportDay1', 'transportDay2', 'history2026', 'day1Bubble']
+    .forEach(function (n) { setRadio(n, e[n]); });
+  updateSupport(); updateSourceArea(); updateBubbleArea(); updateTransportDay1Area();
+  var rows = document.querySelectorAll('#companionList .companion');
+  for (var i = 0; i < rows.length; i++) {
+    var c = (e.companions || [])[i] || {};
+    rows[i].querySelector('.pName').value = c.name || '';
+    rows[i].querySelector('.pFurigana').value = c.furigana || '';
+  }
+  updateCompanionRequired();
+  var srcs = String(e.source || '').split('、');
+  var cbs = document.querySelectorAll('input[name="source"]');
+  for (var j = 0; j < cbs.length; j++) cbs[j].checked = srcs.indexOf(cbs[j].value) !== -1;
+  var other = document.getElementById('sourceOther');
+  var otherOn = document.getElementById('sourceOtherCheck').checked;
+  other.className = otherOn ? '' : 'hidden';
+  other.required = otherOn;
+  document.getElementById('termsAgree').checked = !!e.termsAgree;
+  document.getElementById('conductAgree').checked = !!e.conductAgree;
+  document.getElementById('photoAgree').checked = !!e.photoAgree;
+  document.getElementById('privacyAgree').checked = !!e.privacyAgree;
 }
 
 function val(id) { return document.getElementById(id).value; }
@@ -561,6 +648,7 @@ function addChild() {
   });
   document.getElementById('childList').appendChild(node);
   renumberChildren();
+  return node;
 }
 function updateApplyType() {
   var self = hasSelf(), kids = hasKids();
@@ -627,7 +715,9 @@ function childVals() {
       experienceYears: c.querySelector('.cExperienceYears').value,
       experience: c.querySelector('.cExperience').value,
       tshirt: c.querySelector('.cTshirt').value,
-      museum: c.querySelector('.cMuseum').value
+      museum: c.querySelector('.cMuseum').value,
+      // 変更のとき：前からいるお子様は、前と同じ購入者番号を使う
+      buyerNo: editMode ? (c.dataset.buyerNo || '') : undefined
     });
   }
   return list;
@@ -766,12 +856,14 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     photoAgree: document.getElementById('photoAgree').checked ? '同意する' : '',
     privacyAgree: document.getElementById('privacyAgree').checked ? '同意する' : ''
   };
+  if (editMode) data.mode = 'update';
+  if (idToken) data.idToken = idToken;
   // 二重送信を防ぐため、送信中はボタンを押せなくする
   var btn = document.getElementById('submitBtn');
   if (btn.disabled) return;
   btn.disabled = true;
   btn.textContent = '送信中...';
-  function resetBtn() { btn.disabled = false; btn.textContent = '送信する'; }
+  function resetBtn() { btn.disabled = false; btn.textContent = editMode ? '変更を保存する' : '送信する'; }
   fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -780,6 +872,10 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
     if (result.success) {
       document.getElementById('formArea').className = 'hidden';
       document.getElementById('done').className = '';
+      if (result.updated) {
+        document.getElementById('doneTitle').textContent = 'ご応募内容の変更を保存しました';
+        document.getElementById('doneThanks').textContent = '変更内容を受け付けました。2026年11月16日（月）23:59までは、このフォームを開き直すと、もう一度変更できます。';
+      }
       // 2次募集の期間（11/27〜）は当選発表日が未定のため、日付を出さない
       if (new Date() >= new Date('2026-11-27T00:00:00+09:00')) {
         document.getElementById('announceNote').textContent = '当選発表まで、今しばらくお待ちください。';
