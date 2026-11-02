@@ -261,7 +261,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <p class="note">フルネームで正しくご記入ください。お名前が異なる場合は照合できません。</p></label>
 </fieldset>
 <h3 class="sec">一緒に参加したい方</h3>
-<p class="note">別々にエントリーのご家族・ご友人などで、一緒に参加したい方がいれば、5名までご記入ください（任意）。この応募フォームで一緒にエントリーするお子様は、記入不要です。</p>
+<p class="note">別々にエントリーのご家族・ご友人などで、一緒に参加したい方がいれば、ご記入ください（任意）。この応募フォームで一緒にエントリーするお子様は、記入不要です。</p>
 <p class="note">お互いに当選された場合、同じパート・同じ立ち位置を選ばれていれば、できるだけ近く、お隣の席になるよう配慮いたします（お約束はできません）。パートや立ち位置が異なる場合は、近くのお席にはできません。当選・落選は、お一人ずつ決まります（サポートが必要な方とサポートする方を除く）。</p>
 <p class="note">お相手の方のお名前は、フルネームで正しくご記入ください。お名前が異なる場合は照合できません。お相手の方にも、あなたのお名前を書いていただくと確実です。</p>
 <div id="companionList">
@@ -286,6 +286,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label>5人目のフリガナ<input type="text" class="pFurigana"></label>
 </div>
 </div>
+<button type="button" class="subBtn" id="addCompanionBtn">＋ 一緒に参加したい方を追加</button>
 <h3 class="sec">合同練習・DAY1・その他</h3>
 <div class="q">合同練習の参加予定日<span class="req">必須</span>
 <div class="radios">
@@ -559,6 +560,7 @@ function fillForm(e) {
   ['supportNeeded', 'supporterType', 'rehearsal', 'day1', 'transportDay1', 'transportDay2', 'history2026', 'day1Bubble']
     .forEach(function (n) { setRadio(n, e[n]); });
   updateSupport(); updateSourceArea(); updateBubbleArea(); updateTransportDay1Area();
+  while (document.querySelectorAll('#companionList .companion').length < (e.companions || []).length) addCompanion();
   var rows = document.querySelectorAll('#companionList .companion');
   for (var i = 0; i < rows.length; i++) {
     var c = (e.companions || [])[i] || {};
@@ -673,6 +675,18 @@ function updateApplyType() {
 var applyTypeRadios = document.querySelectorAll('input[name="applyType"]');
 for (var at = 0; at < applyTypeRadios.length; at++) applyTypeRadios[at].addEventListener('change', updateApplyType);
 document.getElementById('addChildBtn').addEventListener('click', addChild);
+// 一緒に参加したい方：「＋」を押すと、6人目・7人目…と何人でも欄を足せる
+function addCompanion() {
+  var list = document.getElementById('companionList');
+  var n = list.querySelectorAll('.companion').length + 1;
+  var div = document.createElement('div');
+  div.className = 'companion';
+  div.innerHTML = '<label>' + n + '人目のお名前<input type="text" class="pName"></label>' +
+    '<label>' + n + '人目のフリガナ<input type="text" class="pFurigana"></label>';
+  list.appendChild(div);
+  return div;
+}
+document.getElementById('addCompanionBtn').addEventListener('click', addCompanion);
 // 一緒に参加したい方：名前とフリガナは片方だけの入力を不可にする
 function companionVals() {
   var rows = document.querySelectorAll('#companionList .companion');
