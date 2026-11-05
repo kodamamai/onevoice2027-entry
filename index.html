@@ -58,11 +58,12 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <form id="appForm" novalidate>
 <div id="editBanner" class="editBanner hidden"><p><strong>ご応募いただいた内容です。</strong></p><p>2026年11月16日（月）23:59まで、内容を変更できます。変更する場合は、内容を直して、いちばん下の「変更を保存する」を押してください。</p></div>
 <div class="q">どなたの分をエントリーしますか<span class="req">必須</span>
-<div class="radios">
-<label><input type="radio" name="applyType" value="自分だけ" required>自分だけ</label>
-<label><input type="radio" name="applyType" value="自分と小中学生の子ども">自分と、小中学生の子ども</label>
-<label><input type="radio" name="applyType" value="小中学生の子どもだけ">小中学生の子どもだけ（自分は参加しない）</label>
-</div>
+<select id="applyType" required>
+<option value="">選択してください</option>
+<option value="自分だけ">自分だけ</option>
+<option value="自分と小中学生の子ども">自分と、小中学生の子ども</option>
+<option value="小中学生の子どもだけ">小中学生の子どもだけ（自分は参加しない）</option>
+</select>
 <p class="note">まとめてエントリーできるのは、ご自身と小中学生のお子様だけです（お子様は5名まで）。高校生以上の方（ご家族・ご友人を含む）は、それぞれご本人のLINEアカウントからエントリーしてください。</p>
 </div>
 <h3 class="sec">エントリーする方（このLINEアカウントの方）の情報</h3>
@@ -546,7 +547,7 @@ function fillChild(node, c) {
   node.dataset.buyerNo = c.buyerNo || '';
 }
 function fillForm(e) {
-  setRadio('applyType', e.applyType);
+  document.getElementById('applyType').value = e.applyType || '';
   document.getElementById('childList').innerHTML = '';
   (e.children || []).forEach(function (c) { fillChild(addChild(), c); });
   updateApplyType();
@@ -626,8 +627,8 @@ document.getElementById('zipBtn').addEventListener('click', function () {
 // 申込みの種類：選んだ内容に合わせて「ご自身」「お子様」の欄を出し分ける
 // 隠した欄は fieldset ごと disabled にして、必須チェックの対象から外す
 var MAX_CHILDREN = 5;
-function hasSelf() { var t = radioVal('applyType'); return t === '自分だけ' || t === '自分と小中学生の子ども'; }
-function hasKids() { var t = radioVal('applyType'); return t === '自分と小中学生の子ども' || t === '小中学生の子どもだけ'; }
+function hasSelf() { var t = document.getElementById('applyType').value; return t === '自分だけ' || t === '自分と小中学生の子ども'; }
+function hasKids() { var t = document.getElementById('applyType').value; return t === '自分と小中学生の子ども' || t === '小中学生の子どもだけ'; }
 function renumberChildren() {
   var cards = document.querySelectorAll('#childList .child');
   for (var i = 0; i < cards.length; i++) {
@@ -666,14 +667,13 @@ function updateApplyType() {
   var selfArea = document.getElementById('selfArea'), kidsArea = document.getElementById('childrenArea');
   selfArea.disabled = !self; selfArea.className = self ? '' : 'hidden';
   kidsArea.disabled = !kids; kidsArea.className = kids ? '' : 'hidden';
-  document.getElementById('kidsOnlyNote').className = radioVal('applyType') === '小中学生の子どもだけ' ? 'note' : 'note hidden';
+  document.getElementById('kidsOnlyNote').className = document.getElementById('applyType').value === '小中学生の子どもだけ' ? 'note' : 'note hidden';
   var list = document.getElementById('childList');
   if (kids && list.children.length === 0) addChild();
   if (!kids) list.innerHTML = '';
   renumberChildren();
 }
-var applyTypeRadios = document.querySelectorAll('input[name="applyType"]');
-for (var at = 0; at < applyTypeRadios.length; at++) applyTypeRadios[at].addEventListener('change', updateApplyType);
+document.getElementById('applyType').addEventListener('change', updateApplyType);
 document.getElementById('addChildBtn').addEventListener('click', addChild);
 // 一緒に参加したい方：「＋」を押すと、6人目・7人目…と何人でも欄を足せる
 function addCompanion() {
@@ -885,7 +885,7 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
   var data = {
     lineUserId: profile.userId,
     displayName: profile.displayName,
-    applyType: radioVal('applyType'),
+    applyType: document.getElementById('applyType').value,
     selfParticipates: hasSelf() ? 'はい' : 'いいえ',
     lastName: val('lastName'),
     firstName: val('firstName'),
