@@ -437,6 +437,8 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbw3Uyao6sB70pf8ypkqD1sdYe
 // 友だち確認の予備（LIFFで確認できないときだけ使う。福井さんの元のスクリプト）
 var FRIEND_CHECK_URL = 'https://script.google.com/macros/s/AKfycbxOk-STkS8VQnpudWMjzlWDXWMCrUKT0p0lcp9C-dSA3T_crt_oNvv79g_RLuxI8y10tw/exec';
 var ADD_FRIEND_URL = 'https://line.me/R/ti/p/@581ittwv';
+// 締切後の専用リンク（URLの ?late=キー）。保存側で1回だけ使えるようにしている
+var LATE_KEY = (function () { try { return new URLSearchParams(location.search).get('late') || ''; } catch (e) { return ''; } })();
 var profile = null;
 var idToken = null;
 // 応募済みの方が内容を変更しているとき true
@@ -478,6 +480,8 @@ function init() {
     setStatus('読み込み中です...');
     var step = 'init';
     liff.init({ liffId: LIFF_ID }).then(function () {
+      // LIFFの転送後にURLの ?late= が戻ってくるので、ここで読み直す
+      try { LATE_KEY = new URLSearchParams(location.search).get('late') || LATE_KEY; } catch (e) {}
       step = 'login';
       if (!liff.isLoggedIn()) { liff.login({ redirectUri: location.href }); return; }
       step = 'profile';
@@ -489,7 +493,7 @@ function init() {
       try { idToken = liff.getIDToken(); } catch (e) { idToken = null; }
       var uid = encodeURIComponent(profile.userId);
       step = 'check';
-      return Promise.all([checkFriend(uid), fetch(API_URL + '?action=checkApplied&userId=' + uid).then(function (res) { return res.json(); })]);
+      return Promise.all([checkFriend(uid), fetch(API_URL + '?action=checkApplied&userId=' + uid + (LATE_KEY ? '&late=' + encodeURIComponent(LATE_KEY) : '')).then(function (res) { return res.json(); })]);
     }).then(function (r) {
       if (!r) return;
       onStatus({ isFriend: r[0], addFriendUrl: ADD_FRIEND_URL, alreadyApplied: r[1] && r[1].alreadyApplied, closed: r[1] && r[1].closed });
@@ -936,6 +940,7 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
   };
   if (editMode) data.mode = 'update';
   if (idToken) data.idToken = idToken;
+  if (LATE_KEY) data.late = LATE_KEY;
   // 二重送信を防ぐため、送信中はボタンを押せなくする
   var btn = document.getElementById('submitBtn');
   if (btn.disabled) return;
