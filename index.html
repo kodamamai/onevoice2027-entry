@@ -56,6 +56,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <div id="formArea" class="hidden">
 <form id="appForm" novalidate>
+<div id="viewBanner" class="editBanner hidden"><p><strong>ご応募いただいた内容です。</strong></p><p>送信後の内容の変更はできません。</p><div id="viewBuyers" class="hidden"><h3 class="sec">エントリー番号</h3><div id="viewBuyerList"></div><p class="important">【重要】エントリー番号は、当選後の参加費のお支払いや、ご家族・お知り合い向け観覧チケットの先行購入の際に必要です。この画面のスクリーンショットを撮るなどして、必ずお控えください。</p></div></div>
 <div id="editBanner" class="editBanner hidden"><p><strong>ご応募いただいた内容です。</strong></p><p>2026年11月16日（月）23:59まで、内容を変更できます。変更する場合は、内容を直して、いちばん下の「変更を保存する」を押してください。</p></div>
 <div class="q">どなたの分をエントリーしますか<span class="req">必須</span>
 <select id="applyType" required>
@@ -409,7 +410,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <div id="formErrors" class="formErrors hidden"></div>
 <button type="submit" id="submitBtn">送信する</button>
-<p class="note">ご応募は、LINEアカウント1つにつき1回までです。送信後も、2026年11月16日（月）23:59までは、このフォームを開き直すと内容の確認・変更ができます。</p>
+<p class="note" id="submitNote">ご応募は、LINEアカウント1つにつき1回までです。送信後も、2026年11月16日（月）23:59までは、このフォームを開き直すと内容の確認・変更ができます。</p>
 </form>
 </div>
 <div id="done" class="hidden">
@@ -456,6 +457,8 @@ function onStatus(status) {
     // 1つのLINEアカウントにつき応募は1回まで。1次募集の締切までは、応募内容を出して変更できるようにする
     loadMyEntry();
   } else if (status.isFriend) {
+    // 締切後の専用リンク：送信後は変更できないので、下の注意書きを変える
+    if (LATE_KEY) document.getElementById('submitNote').textContent = 'ご応募は、LINEアカウント1つにつき1回までです。送信後の変更はできませんが、このフォームを開き直すと、送信した内容とエントリー番号を確認できます。';
     document.getElementById('formArea').className = '';
   } else {
     document.getElementById('addFriendLink').href = status.addFriendUrl || '#';
@@ -514,10 +517,15 @@ function loadMyEntry() {
   fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify({ action: 'getMyEntry', idToken: idToken, lineUserId: profile.userId })
+    body: JSON.stringify({ action: 'getMyEntry', idToken: idToken, lineUserId: profile.userId, late: LATE_KEY })
   }).then(function (res) { return res.json(); }).then(function (r) {
     loading.className = 'hidden';
-    if (r.found && r.entry) {
+    if (r.found && r.entry && r.readOnly) {
+      // 締切後の専用リンク：送信した内容とエントリー番号を見るだけ（変更はできない）
+      fillForm(r.entry);
+      showReadOnly(r.entry);
+      document.getElementById('formArea').className = '';
+    } else if (r.found && r.entry) {
       fillForm(r.entry);
       editMode = true;
       document.getElementById('editBanner').className = 'editBanner';
@@ -532,6 +540,28 @@ function loadMyEntry() {
     loading.className = 'hidden';
     document.getElementById('applied').className = '';
   });
+}
+
+function showReadOnly(e) {
+  var fa = document.getElementById('formArea');
+  var els = fa.querySelectorAll('input, select, textarea, button');
+  for (var i = 0; i < els.length; i++) els[i].disabled = true;
+  document.getElementById('submitBtn').className = 'hidden';
+  document.getElementById('submitNote').className = 'hidden';
+  var list = document.getElementById('viewBuyerList');
+  list.innerHTML = '';
+  function add(name, no) {
+    if (!no) return;
+    var p = document.createElement('p');
+    p.className = 'buyerNo';
+    p.textContent = (name ? name + '：' : '') + no;
+    list.appendChild(p);
+  }
+  add(e.name || ((e.lastName || '') + ' ' + (e.firstName || '')).trim(), e.buyerNo);
+  (e.children || []).forEach(function (c) { add(((c.lastName || '') + ' ' + (c.firstName || '')).trim(), c.buyerNo); });
+  if (list.children.length) document.getElementById('viewBuyers').className = '';
+  document.getElementById('viewBanner').className = 'editBanner';
+  window.scrollTo(0, 0);
 }
 
 function setVal(id, v) { var el = document.getElementById(id); if (el) el.value = v || ''; }
