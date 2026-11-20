@@ -57,7 +57,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <div id="formArea" class="hidden">
 <form id="appForm" novalidate>
 <div id="viewBanner" class="editBanner hidden"><p><strong>ご応募いただいた内容です。</strong></p><p>送信後の内容の変更はできません。</p><div id="viewBuyers" class="hidden"><h3 class="sec">エントリー番号</h3><div id="viewBuyerList"></div><p class="important">【重要】エントリー番号は、当選後の参加費のお支払いや、ご家族・お知り合い向け観覧チケットの先行購入の際に必要です。この画面のスクリーンショットを撮るなどして、必ずお控えください。</p></div></div>
-<div id="editBanner" class="editBanner hidden"><p><strong>ご応募いただいた内容です。</strong></p><p>2026年12月16日（水）23:59まで、内容を変更できます。変更する場合は、内容を直して、いちばん下の「変更を保存する」を押してください。</p></div>
+<div id="editBanner" class="editBanner hidden"><p><strong>ご応募いただいた内容です。</strong></p><p>2026年12月14日（月）23:59まで、内容を変更できます。変更する場合は、内容を直して、いちばん下の「変更を保存する」を押してください。</p></div>
 <div class="q">どなたの分をエントリーしますか<span class="req">必須</span>
 <select id="applyType" required>
 <option value="">選択してください</option>
@@ -176,7 +176,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </label>
 <div class="q sizeArea">Tシャツサイズ表
 <img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
-<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なエントリー内容となります。サイズの変更は、2026年12月16日（水）23:59までできます。それ以降は変更できませんので、サイズをよくご確認ください。</p>
+<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なエントリー内容となります。サイズの変更は、2026年12月14日（月）23:59までできます。それ以降は変更できませんので、サイズをよくご確認ください。</p>
 </div>
 </fieldset>
 <fieldset id="childrenArea" class="hidden" disabled>
@@ -232,7 +232,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </label>
 <div class="q sizeArea">Tシャツサイズ表
 <img src="tshirt-size.png" alt="Tシャツサイズ表（130・150・S・M・L・XL）" class="sizeTable">
-<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なエントリー内容となります。サイズの変更は、2026年12月16日（水）23:59までできます。それ以降は変更できませんので、サイズをよくご確認ください。</p>
+<p class="note">夜は冷えるため、Tシャツの下に着込めるよう、大きめのサイズを選んでいただくことをおすすめします。本番中はTシャツの上から何かを羽織ることはできませんので、ご了承ください。ここでお選びいただくTシャツサイズは、当選された場合の正式なエントリー内容となります。サイズの変更は、2026年12月14日（月）23:59までできます。それ以降は変更できませんので、サイズをよくご確認ください。</p>
 </div>
 <button type="button" class="subBtn cRemove">このお子様を削除</button>
 </div>
@@ -410,7 +410,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <div id="formErrors" class="formErrors hidden"></div>
 <button type="submit" id="submitBtn">送信する</button>
-<p class="note" id="submitNote">ご応募は、LINEアカウント1つにつき1回までです。送信後も、2026年12月16日（水）23:59までは、このフォームを開き直すと内容の確認・変更ができます。</p>
+<p class="note" id="submitNote">ご応募は、LINEアカウント1つにつき1回までです。送信後も、2026年12月14日（月）23:59までは、このフォームを開き直すと内容の確認・変更ができます。</p>
 </form>
 </div>
 <div id="done" class="hidden">
@@ -987,7 +987,7 @@ document.getElementById('appForm').addEventListener('submit', function (e) {
       document.getElementById('done').className = '';
       if (result.updated) {
         document.getElementById('doneTitle').textContent = 'ご応募内容の変更を保存しました';
-        document.getElementById('doneThanks').textContent = '変更内容を受け付けました。2026年12月16日（水）23:59までは、このフォームを開き直すと、もう一度変更できます。';
+        document.getElementById('doneThanks').textContent = '変更内容を受け付けました。2026年12月14日（月）23:59までは、このフォームを開き直すと、もう一度変更できます。';
       }
       // 合唱に参加する方ごとの購入者番号を表示する
       var buyers = result.buyers || [];
