@@ -44,6 +44,26 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 .formErrors{margin:12px 0;padding:10px 12px;border:2px solid #d00;border-radius:4px;background:#fff1f1;color:#b00;font-size:15px;line-height:1.6;}
 .formErrors ul{margin:6px 0 0;padding-left:1.2em;}
 .invalid{outline:2px solid #d00;outline-offset:2px;}
+.fee{margin:0 0 16px;padding:12px;border:2px solid #06c755;border-radius:6px;background:#fff;line-height:1.6;}
+.fee h3{margin:0 0 6px;font-size:15px;}
+.fee h3 small{font-weight:normal;font-size:12px;}
+.feeTable{width:100%;border-collapse:collapse;font-size:16px;}
+.feeTable th{text-align:left;font-weight:normal;padding:4px 0;}
+.feeTable td{text-align:right;font-weight:bold;padding:4px 0;white-space:nowrap;}
+.feeTable tr+tr th,.feeTable tr+tr td{border-top:1px solid #eee;}
+.fee .inc{margin-top:14px;}
+.incList{margin:0;font-size:14px;}
+.incList dt{margin-top:8px;font-weight:bold;color:#078a3d;}
+.incList dd{margin:0;}
+.feeBubble{margin:12px 0 0;padding:8px 10px;border-radius:4px;background:#fff8e1;border:1px solid #e6c45c;font-size:14px;font-weight:normal;}
+.feeBubble strong{display:block;}
+.precheck{margin:0 0 20px;padding:12px;border:2px solid #e6a400;border-radius:6px;background:#fffdf5;}
+.precheck>.req,.feeConfirm>.req{white-space:nowrap;display:inline-block;}
+.precheck .agree,.feeConfirm .agree{display:flex;align-items:flex-start;}
+.precheck .agree input,.feeConfirm .agree input{flex:none;margin-top:5px;}
+.preList{margin:10px 0 0;padding-left:1.2em;font-size:14px;font-weight:normal;line-height:1.6;}
+.feeLink{display:block;margin-top:8px;padding:10px 4px;background:#fff;border:1px solid #06c755;border-radius:4px;text-align:center;color:#078a3d;font-weight:bold;font-size:14px;text-decoration:none;}
+.feeConfirm .fee{margin:4px 0 0;font-weight:normal;}
 
 </style>
 </head>
@@ -58,6 +78,34 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <form id="appForm" novalidate>
 <div id="viewBanner" class="editBanner hidden"><p><strong>ご応募いただいた内容です。</strong></p><p>送信後の内容の変更はできません。</p><div id="viewBuyers" class="hidden"><h3 class="sec">エントリー番号</h3><div id="viewBuyerList"></div><p class="important">【重要】エントリー番号は、当選後の参加費のお支払いや、ご家族・お知り合い向け観覧チケットの先行購入の際に必要です。この画面のスクリーンショットを撮るなどして、必ずお控えください。</p></div></div>
 <div id="editBanner" class="editBanner hidden"><p><strong>ご応募いただいた内容です。</strong></p><p>2026年12月14日（月）23:59まで、内容を変更できます。変更する場合は、内容を直して、いちばん下の「変更を保存する」を押してください。</p></div>
+<div class="fee">
+<h3>参加費 <small>（お一人・税込）</small></h3>
+<table class="feeTable">
+<tr><th>一般</th><td>19,800円</td></tr>
+<tr><th>高校生</th><td>15,800円</td></tr>
+<tr><th>小中学生</th><td>12,800円</td></tr>
+</table>
+<p class="note">※ 合唱参加費のほかに、プレイガイド（チケミー）所定の手数料がかかります。</p>
+<h3 class="inc">参加費に含まれるもの</h3>
+<dl class="incList">
+<dt>歌う</dt><dd>DAY2本番出演</dd><dd>DAY1公開リハーサル出演</dd>
+<dt>観る</dt><dd>合唱専用エリアの花火観覧席</dd><dd>ナイトバブル観覧</dd>
+<dt>練習</dt><dd>合同練習（2回）</dd><dd>パート別オンラインレッスン（2回）</dd><dd>楽譜データ／練習用デモ音源</dd>
+<dt>もらえる</dt><dd>DAY1・DAY2着用のオリジナルTシャツ</dd><dd>記念映像</dd>
+<dt>安心</dt><dd>DAY2中止時の返金保証</dd>
+</dl>
+<div class="feeBubble"><strong>★ 2026年にも出演された方だけ</strong>DAY1ナイトバブルショー最後の1曲「You Raise Me Up」を、バブルパフォーマンス・ソリスト3名・合唱のコラボでお届けします。合唱は、ステージ前と客席を囲んで歌います。
+<p class="note">※ 当選された方のうち、2026年にも出演された方のみ（参加は任意です）</p></div>
+</div>
+<div class="q precheck" id="preCheck">エントリーの前に、必ずご確認ください<span class="req">必須</span>
+<a class="feeLink" href="https://onevoice2027.biwakolaa.com/" target="_blank" rel="noopener">募集サイトを見る（よくある質問もこちら）</a>
+<ul class="preList">
+<li>当選後、12月24日（木）23:59までに参加費のお支払いが必要です（期限までに決済が確認できない場合は、当選が自動的に取り消されます）。</li>
+<li>合同練習（4月10日・4月24日）は、最低1回の参加が必須です。</li>
+<li>自己都合によるキャンセル・返金はお受けしておりません。</li>
+</ul>
+<label class="agree"><input type="checkbox" id="siteAgree" required>募集サイトを、よくある質問まで確認しました</label>
+</div>
 <div class="q">どなたの分をエントリーしますか<span class="req">必須</span>
 <select id="applyType" required>
 <option value="">選択してください</option>
@@ -160,7 +208,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </label>
 <label>琵琶湖博物館（会場付近）の利用希望<span class="req">必須</span>
 <select id="museum" required><option value="">選択してください</option><option value="はい">はい</option><option value="いいえ">いいえ</option></select>
-<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。入館料は団体割引料金で一般670円・大学生380円（税込）、高校生以下は無料です。一般・大学生の方は、合唱参加費のお支払い時に別途お支払いください。当日は、博物館の入口でチケミーの博物館入館チケットをお見せいただき、入館券とお引き換えください。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。</p>
+<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。入館料は団体割引料金で一般670円・大学生380円（税込）、高校生以下は無料です。一般・大学生の方は、2027年1月中旬に、ご家族・お知り合い向け先行申込と同じ時期にお申し込みいただけます（公式LINEでご案内します）。当日は、博物館の入口でチケミーの博物館入館チケットをお見せいただき、入館券とお引き換えください。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。<br>※滋賀県内にお住まいの65歳以上の方、障害者手帳をお持ちの方と介護者の方は、常設展示が無料です。入館券は購入せず、当日、博物館の窓口で証明できるものをご提示ください。</p>
 </label>
 <label>Tシャツサイズ<span class="req">必須</span>
 <select id="tshirt" required>
@@ -225,7 +273,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label>これまでの合唱経験<span class="req">必須</span><textarea class="cExperience" required></textarea></label>
 <label>琵琶湖博物館（会場付近）の利用希望<span class="req">必須</span>
 <select class="cMuseum" required><option value="">選択してください</option><option value="はい">はい</option><option value="いいえ">いいえ</option></select>
-<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。入館料は団体割引料金で一般670円・大学生380円（税込）、高校生以下は無料です。一般・大学生の方は、合唱参加費のお支払い時に別途お支払いください。当日は、博物館の入口でチケミーの博物館入館チケットをお見せいただき、入館券とお引き換えください。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。</p>
+<p class="note">琵琶湖博物館は、会場と同じ烏丸半島にある県立の博物館です。本番当日の待ち時間に、展示の見学にご利用いただけます。入館料は団体割引料金で一般670円・大学生380円（税込）、高校生以下は無料です。一般・大学生の方は、2027年1月中旬に、ご家族・お知り合い向け先行申込と同じ時期にお申し込みいただけます（公式LINEでご案内します）。当日は、博物館の入口でチケミーの博物館入館チケットをお見せいただき、入館券とお引き換えください。5/8当日に限り再入場ができ、館内のお手洗いもご利用いただけます。</p>
 </label>
 <label>Tシャツサイズ<span class="req">必須</span>
 <select class="cTshirt" required><option value="">選択してください</option><option value="130">130（低学年の目安）</option><option value="150">150（高学年の目安）</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select>
@@ -314,7 +362,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label><input type="radio" name="transportDay1" value="宿泊付きバスプラン（5/7・5/8の2泊）">宿泊付きバスプラン（5/7・5/8の2泊）</label>
 <label><input type="radio" name="transportDay1" value="その他（送迎・自転車・徒歩など）">その他（送迎・自転車・徒歩など）</label>
 </div>
-<p class="note">※ 運営の準備（駐車場の広さやバスの台数など）の目安としてお伺いするものです。現時点のご予定でかまいません。<br>※ ここでのご回答は交通手段のエントリーではありません。実際には、ここで選んだものと違う交通手段をご利用いただいても問題ございません。<br>※ 交通手段のエントリーは、合唱参加の当選が決まり、参加費をお支払いいただく際に、別途お手続きいただきます。</p>
+<p class="note">※ 運営の準備（駐車場の広さやバスの台数など）の目安としてお伺いするものです。現時点のご予定でかまいません。<br>※ ここでのご回答は交通手段のエントリーではありません。実際には、ここで選んだものと違う交通手段をご利用いただいても問題ございません。<br>※ 交通手段は、2027年1月中旬に、ご家族・お知り合い向け先行申込と同じ時期に、オプションとしてご購入いただけます。応募や参加費のお支払いの時点ではお申し込みいただけません。</p>
 </div>
 <div class="q">DAY2（5/8）の会場までの交通手段（予定）<span class="req">必須</span>
 <div class="checks">
@@ -326,7 +374,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <label><input type="radio" name="transportDay2" value="宿泊付きバスプラン（5/8のみ1泊）">宿泊付きバスプラン（5/8のみ1泊）</label>
 <label><input type="radio" name="transportDay2" value="その他（送迎・自転車・徒歩など）">その他（送迎・自転車・徒歩など）</label>
 </div>
-<p class="note">※ 運営の準備（駐車場の広さやバスの台数など）の目安としてお伺いするものです。現時点のご予定でかまいません。<br>※ ここでのご回答は交通手段のエントリーではありません。実際には、ここで選んだものと違う交通手段をご利用いただいても問題ございません。<br>※ 交通手段のエントリーは、合唱参加の当選が決まり、参加費をお支払いいただく際に、別途お手続きいただきます。</p>
+<p class="note">※ 運営の準備（駐車場の広さやバスの台数など）の目安としてお伺いするものです。現時点のご予定でかまいません。<br>※ ここでのご回答は交通手段のエントリーではありません。実際には、ここで選んだものと違う交通手段をご利用いただいても問題ございません。<br>※ 交通手段は、2027年1月中旬に、ご家族・お知り合い向け先行申込と同じ時期に、オプションとしてご購入いただけます。応募や参加費のお支払いの時点ではお申し込みいただけません。</p>
 </div>
 <div class="q">2026年のONE VOICEとの関わり<span class="req">必須</span>
 <p class="note">当てはまるものを1つ選んでください。</p>
@@ -375,7 +423,7 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 <p>・ご決済後は、原則として歌唱方向・パートを変更しません。ただし、ステージ設備の変更や欠員への対応など、やむを得ない事情がある場合に限り、変更をお願いすることがあります。その場合は、できるだけ早く公式LINEでご連絡します。</p>
 <p>・参加費は、当選通知後にご案内する専用ページより、ご自身で決済手続きをお願いします（自動決済ではございません）。お支払い期限は、当選発表後から2026年12月24日（木）までです。期限までに決済が確認できない場合は、当選が自動的に取り消されます。期限後の決済には対応できませんので、あらかじめご了承ください。</p>
 <p>・合唱参加費のほかに、チケミー所定の手数料がかかります。また、会場までの交通費、駐車場・駐輪場等の利用料金は別途必要です。</p>
-<p>・DAY2自体が中止となった場合は参加費を全額返金いたします。合同練習やDAY1のみの中止、内容変更の場合の返金はございません。振替日の設定はございません。</p>
+<p>・DAY2自体が中止となった場合、参加費を全額返金いたします。DAY2の公演開始後に途中で中止となった場合や、合同練習・DAY1のみの中止、内容変更の場合の返金はございません。返金の際は、払戻しに伴う振込手数料などの実費は参加者のご負担となり、返金額から差し引かせていただきます。振替日の設定はございません。</p>
 <p>・エントリーは個人単位です。代表者によるまとめてのエントリーは基本不可です。ただし、小中学生は保護者の方による代理でのエントリーが可能で、保護者の方ご自身と小中学生のお子様（5名まで）の分は、まとめて1回のエントリー・1回のご決済で行えます。高校生以上の方（ご家族・ご友人を含む）は、それぞれご本人のLINEアカウントからエントリーしてください。</p>
 <p>・小・中学生は、合同練習、DAY1、DAY2のすべてにおいて、保護者の付き添いが必要です。DAY1・DAY2で保護者の方が合唱に参加されない場合は、各日の観覧チケットを別途ご購入ください。保護者の方は合唱専用エリアには同席いただけませんが、できるだけお子様に近い観覧席をご案内できるよう配慮します。高校生は保護者同伴推奨です。</p>
 </div>
@@ -408,6 +456,22 @@ button{margin-top:20px;width:100%;padding:12px;background:#06c755;color:#fff;bor
 </div>
 <label class="agree"><input type="checkbox" id="privacyAgree" required>個人情報の取り扱いに同意します</label>
 </div>
+<div class="q feeConfirm" id="feeConfirm">参加費と、参加費に含まれるものの確認<span class="req">必須</span>
+<div class="fee">
+<h3>参加費 <small>（お一人・税込）</small></h3>
+<table class="feeTable">
+<tr><th>一般</th><td>19,800円</td></tr>
+<tr><th>高校生</th><td>15,800円</td></tr>
+<tr><th>小中学生</th><td>12,800円</td></tr>
+</table>
+<p class="note">※ 合唱参加費のほかに、プレイガイド（チケミー）所定の手数料がかかります。</p>
+<h3 class="inc">参加費に含まれるもの</h3>
+<p style="margin:0;font-size:14px;">DAY2本番出演／DAY1公開リハーサル出演／合唱専用エリアの花火観覧席／ナイトバブル観覧／合同練習（2回）／パート別オンラインレッスン（2回）／楽譜データ／練習用デモ音源／DAY1・DAY2着用のオリジナルTシャツ／記念映像／DAY2中止時の返金保証</p>
+<div id="feeBubble" class="feeBubble hidden"><strong>★ 2026年にも出演された方だけ</strong>DAY1ナイトバブルショー最後の1曲「You Raise Me Up」を、バブルパフォーマンス・ソリスト3名・合唱のコラボでお届けします。合唱は、ステージ前と客席を囲んで歌います。
+<p class="note">※ 当選された方のうち、2026年にも出演された方のみ（参加は任意です）</p></div>
+</div>
+<label class="agree"><input type="checkbox" id="feeAgree" required>参加費と、参加費に含まれるものを確認しました</label>
+</div>
 <div id="formErrors" class="formErrors hidden"></div>
 <button type="submit" id="submitBtn">送信する</button>
 <p class="note" id="submitNote">ご応募は、LINEアカウント1つにつき1回までです。送信後も、2026年12月14日（月）23:59までは、このフォームを開き直すと内容の確認・変更ができます。</p>
@@ -437,6 +501,13 @@ var LIFF_ID = '2011606835-2Q14m0H5';
 var API_URL = 'https://script.google.com/macros/s/AKfycbw3Uyao6sB70pf8ypkqD1sdYe6Qrs32Q7NxH0XAS7DOqwp3f1mP2xVYzGUKs2jywWxP5w/exec';
 // 友だち確認の予備（LIFFで確認できないときだけ使う。福井さんの元のスクリプト）
 var FRIEND_CHECK_URL = 'https://script.google.com/macros/s/AKfycbxOk-STkS8VQnpudWMjzlWDXWMCrUKT0p0lcp9C-dSA3T_crt_oNvv79g_RLuxI8y10tw/exec';
+// 募集サイトはLINEの外のブラウザで開く（フォームに入力した内容が消えないように）
+var feeLinks = document.querySelectorAll('.feeLink');
+for (var fl = 0; fl < feeLinks.length; fl++) feeLinks[fl].addEventListener('click', function (ev) {
+  if (typeof liff === 'undefined' || !liff.isInClient || !liff.isInClient()) return;
+  ev.preventDefault();
+  liff.openWindow({ url: this.href, external: true });
+});
 var ADD_FRIEND_URL = 'https://line.me/R/ti/p/@581ittwv';
 // 締切後の専用リンク（URLの ?late=キー）。保存側で1回だけ使えるようにしている
 var LATE_KEY = (function () { try { return new URLSearchParams(location.search).get('late') || ''; } catch (e) { return ''; } })();
@@ -548,6 +619,8 @@ function showReadOnly(e) {
   for (var i = 0; i < els.length; i++) els[i].disabled = true;
   document.getElementById('submitBtn').className = 'hidden';
   document.getElementById('submitNote').className = 'hidden';
+  document.getElementById('feeConfirm').className = 'hidden';
+  document.getElementById('preCheck').className = 'hidden';
   var list = document.getElementById('viewBuyerList');
   list.innerHTML = '';
   function add(name, no) {
@@ -801,6 +874,7 @@ function needBubble() {
 function updateBubbleArea() {
   var on = needBubble(), area = document.getElementById('bubbleArea');
   area.className = on ? 'q' : 'q hidden';
+  document.getElementById('feeBubble').className = on ? 'feeBubble' : 'feeBubble hidden';
   var rs = document.querySelectorAll('input[name="day1Bubble"]');
   for (var i = 0; i < rs.length; i++) { rs[i].required = on; if (!on) rs[i].checked = false; }
 }
