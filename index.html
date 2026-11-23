@@ -511,6 +511,8 @@ for (var fl = 0; fl < feeLinks.length; fl++) feeLinks[fl].addEventListener('clic
 var ADD_FRIEND_URL = 'https://line.me/R/ti/p/@581ittwv';
 // 締切後の専用リンク（URLの ?late=キー）。保存側で1回だけ使えるようにしている
 var LATE_KEY = (function () { try { return new URLSearchParams(location.search).get('late') || ''; } catch (e) { return ''; } })();
+// 運営の確認用（URLの ?preview=1）：応募済みでも空のフォームを見るだけ。送信ボタンは出さない
+var PREVIEW = (function () { try { return new URLSearchParams(location.search).get('preview') === '1'; } catch (e) { return false; } })();
 var profile = null;
 var idToken = null;
 // 応募済みの方が内容を変更しているとき true
@@ -521,6 +523,11 @@ function showError(msg) { setStatus('エラーが発生しました：' + msg); 
 
 function onStatus(status) {
   document.getElementById('loading').className = 'hidden';
+  if (PREVIEW) {
+    document.getElementById('submitBtn').className = 'hidden';
+    document.getElementById('formArea').className = '';
+    return;
+  }
   if (status.closed) {
     // 応募の受付期間外
     document.getElementById('closed').className = '';
@@ -556,6 +563,7 @@ function init() {
     liff.init({ liffId: LIFF_ID }).then(function () {
       // LIFFの転送後にURLの ?late= が戻ってくるので、ここで読み直す
       try { LATE_KEY = new URLSearchParams(location.search).get('late') || LATE_KEY; } catch (e) {}
+      try { PREVIEW = PREVIEW || new URLSearchParams(location.search).get('preview') === '1'; } catch (e) {}
       step = 'login';
       if (!liff.isLoggedIn()) { liff.login({ redirectUri: location.href }); return; }
       step = 'profile';
@@ -970,6 +978,7 @@ function checkRequired(form) {
 
 document.getElementById('appForm').addEventListener('submit', function (e) {
   e.preventDefault();
+  if (PREVIEW) return;
   if (!checkRequired(this)) return;
   if (hasSelf() && val('birthday') > '2021-04-01') {
     alert('小学生以上の方が対象です（2021年4月1日以前に生まれた方）。小学生未満の方はご参加いただけません。');
